@@ -1,0 +1,71 @@
+{
+    "consents": null,
+    "response": {
+        "weight": "203.6",
+        "measureDefinitions": [
+            {
+                "measureId": 0,
+                "displayName": "Activity Compliance",
+                "ranges": [
+                    {"name": "redlow", "color": "#C9081B", "startValue": 1, "endValue": 57},
+                    {"name": "yellowlow", "color": "#F0FA34", "startValue": 57, "endValue": 85},
+                    {"name": "green", "color": "#1D6303", "startValue": 85, "endValue": 100}
+                ]
+            },
+            {
+                "measureId": 6,
+                "displayName": "Weight",
+                "ranges": [
+                    {"name": "redlow", "color": "#C9081B", "startValue": 1, "endValue": 100},
+                    {"name": "yellowlow", "color": "#F0FA34", "startValue": 100, "endValue": 200},
+                    {"name": "green", "color": "#1D6303", "startValue": 200, "endValue": 300},
+                    {"name": "yellowhigh", "color": "#F0FA34", "startValue": 300, "endValue": 400},
+                    {"name": "redhigh", "color": "#C9081B", "startValue": 400, "endValue": 500}
+                ]
+            },
+            {
+                "measureId": 2,
+                "displayName": "Systolic",
+                "ranges": [
+                    {"name": "redlow", "color": "#C9081B", "startValue": 50, "endValue": 100},
+                    {"name": "yellowlow", "color": "#F0FA34", "startValue": 100, "endValue": 119},
+                    {"name": "green", "color": "#1D6303", "startValue": 119, "endValue": 139},
+                    {"name": "yellowhigh", "color": "#F0FA34", "startValue": 139, "endValue": 159},
+                    {"name": "redhigh", "color": "#C9081B", "startValue": 159, "endValue": 300}
+                ]
+            },
+            {
+                "measureId": 1,
+                "displayName": "Blood Glucose",
+                "ranges": [
+                    {"name": "redlow", "color": "#C9081B", "startValue": 20, "endValue": 50},
+                    {"name": "yellowlow", "color": "#F0FA34", "startValue": 50, "endValue": 69},
+                    {"name": "green", "color": "#1D6303", "startValue": 69, "endValue": 130},
+                    {"name": "yellowhigh", "color": "#F0FA34", "startValue": 130, "endValue": 400},
+                    {"name": "redhigh", "color": "#C9081B", "startValue": 400, "endValue": 500}
+                ]
+            },
+            {
+                "measureId": 4,
+                "displayName": "Pulse Ox",
+                "ranges": [
+                    {"name": "redlow", "color": "#C9081B", "startValue": 70, "endValue": 73},
+                    {"name": "yellowlow", "color": "#F0FA34", "startValue": 73, "endValue": 80},
+                    {"name": "green", "color": "#1D6303", "startValue": 80, "endValue": 100}
+                ]
+            },
+            {
+                "measureId": 3,
+                "displayName": "Diastolic",
+                "ranges": [
+                    {"name": "redlow", "color": "#C9081B", "startValue": 20, "endValue": 73},
+                    {"name": "yellowlow", "color": "#F0FA34", "startValue": 73, "endValue": 80},
+                    {"name": "green", "color": "#1D6303", "startValue": 80, "endValue": 89},
+                    {"name": "yellowhigh", "color": "#F0FA34", "startValue": 89, "endValue": 99},
+                    {"name": "redhigh", "color": "#C9081B", "startValue": 99, "endValue": 150}
+                ]
+            }
+        ]
+    },
+    "updates": null
+}

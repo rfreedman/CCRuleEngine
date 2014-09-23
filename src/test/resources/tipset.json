@@ -1,0 +1,266 @@
+{
+    "consents": null,
+    "response": {
+        "tipSets": [
+            {
+                "tipSetId": 1,
+                "comment": "Blood Glucose - Normal Range",
+                "tip": [
+                    {"tipId": 1, "text": "Keep moving! Exercise is good for your overall health."},
+                    {"tipId": 2, "text": "Maintaining a balanced diet is key to achieving blood sugar control."},
+                    {
+                        "tipId": 3,
+                        "text": "Eating a well balanced diet (50% vegetables, 25% starchy food, 25% protein) will help to keep your blood sugar in control."
+                    },
+                    {
+                        "tipId": 4,
+                        "text": "Exercise has been shown to improve blood sugar levels, reduce risk for heart disease, and contribute positively to weight loss."
+                    },
+                    {
+                        "tipId": 5,
+                        "text": "Stay focused. Diabetes maintenance doesn’t stop. It is 24/7, 365 days a year."
+                    },
+                    {
+                        "tipId": 6,
+                        "text": "Getting an annual flu shot has shown to reduce diabetes-related hospitalizations.  Don’t forget to get your flu shot!"
+                    },
+                    {
+                        "tipId": 7,
+                        "text": "Keeping your blood sugar levels as close to normal as possible can be a lifesaver and prevent complications like a heart attack or stroke."
+                    },
+                    {
+                        "tipId": 8,
+                        "text": "Consistent blood sugar control can prevent or slow the progress of complications of diabetes, giving you extra years of healthy, active life."
+                    },
+                    {
+                        "tipId": 9,
+                        "text": "Regular exercise has been shown to improve blood sugar, reduce cardiovascular risk factors, contribute to weight loss, and improve overall well-being."
+                    },
+                    {
+                        "tipId": 10,
+                        "text": "Monitoring your carbohydrate intake is a key strategy in achieving blood sugar control."
+                    },
+                    {
+                        "tipId": 11,
+                        "text": "Having an A1C below or around 7 has been shown to reduce complications of diabetes."
+                    },
+                    {
+                        "tipId": 12,
+                        "text": "Controlling your blood sugar levels can significantly decrease your chance of kidney and eye disease."
+                    },
+                    {
+                        "tipId": 13,
+                        "text": "Decreasing your body weight by 7% and incorporating physical activity such as walking at least 150 min/week can really make a difference in managing your diabetes."
+                    },
+                    {
+                        "tipId": 14,
+                        "text": "Please limit alcohol consumption to one drink a day or less for women and two drinks per day or less for adult men."
+                    },
+                    {
+                        "tipId": 15,
+                        "text": "A daily foot exam is the best way to prevent or detect early problems with your feet."
+                    },
+                    {
+                        "tipId": 16,
+                        "text": " Early detection of sores, blisters or red spots on your feet can prevent complications such as infection and/or amputation."
+                    }
+                ]
+            },
+            {
+                "tipSetId": 2,
+                "comment": "Blood Glucose - Caution Range",
+                "tip": [
+                    {
+                        "tipId": 17,
+                        "text": "A weight loss of 5 to 10 pounds and being physically active during the week can really make a difference in managing your blood sugar."
+                    },
+                    {
+                        "tipId": 18,
+                        "text": "Exercise helps to keep your blood sugar in control.  Please try to get some physical activity during the day."
+                    },
+                    {
+                        "tipId": 19,
+                        "text": "Exercise has been shown to improve blood sugar levels, reduce risk for heart disease, and contribute positively to weight loss.."
+                    },
+                    {
+                        "tipId": 20,
+                        "text": "Consistently high, uncontrolled blood sugar levels can do long term damage to your eyes, kidneys, and heart."
+                    },
+                    {
+                        "tipId": 21,
+                        "text": "Please make sure you are exercising regularly and taking your medication(s) as prescribed. "
+                    }
+                ]
+            },
+            {
+                "tipSetId": 3,
+                "comment": "Blood Glucose - Caution Range",
+                "tip": [
+                    {
+                        "tipId": 22,
+                        "text": "Sometimes illness can cause blood sugar levels to rise. If you are feeling sick, please contact your healthcare provider."
+                    },
+                    {
+                        "tipId": 23,
+                        "text": "Regular exercise has been proven to reduce stress and help control blood sugar."
+                    },
+                    {
+                        "tipId": 24,
+                        "text": "Meditation is a good form of stress reduction. Take a deep breath and try to relax."
+                    },
+                    {"tipId": 25, "text": "Please make sure you are taking your medication(s) as prescribed. "}
+                ]
+            },
+            {
+                "tipSetId": 4,
+                "comment": "Blood Glucose - Caution Range",
+                "tip": [
+                    {
+                        "tipId": 26,
+                        "text": "Eating a meal high in carbohydrates, such as pasta or breads, can cause a high blood sugar reading.  Eat carbohydrates in moderation."
+                    },
+                    {
+                        "tipId": 27,
+                        "text": "A weight lose of 5 to 10 pounds and incorporating physical activity during the week can really make a difference in managing your blood sugar."
+                    },
+                    {
+                        "tipId": 28,
+                        "text": "Pay more attention to your maintaining a healthy diet each day. Counting carbs will also help you control your blood sugar."
+                    },
+                    {
+                        "tipId": 29,
+                        "text": "Monitoring the amount of carbohydrates (like pastas and breads) is a key strategy in achieving blood sugar control."
+                    },
+                    {
+                        "tipId": 30,
+                        "text": "Your blood sugar is higher than normal today. Please remember to avoid foods and drinks that can cause your sugar levels to rise quickly, like soda and juice."
+                    }
+                ]
+            },
+            {
+                "tipSetId": 5,
+                "comment": "Blood Glucose - Caution Range",
+                "tip": [
+                    {
+                        "tipId": 31,
+                        "text": "It is important to check your blood sugar as prescribed and to know your numbers."
+                    },
+                    {"tipId": 32, "text": "Please make sure you are taking your medication(s) as prescribed."},
+                    {
+                        "tipId": 33,
+                        "text": "Every day you make choices. Today and every day, choose health first and comitt to watching your diet and getting physical activity."
+                    },
+                    {"tipId": 34, "text": "Every day you make choices. Today and every day, put health first."},
+                    {"tipId": 35, "text": "Continue watching your diet and getting daily physical activity."},
+                    {
+                        "tipId": 36,
+                        "text": "Think of things that you can personally do to improve this result, such as watching your diet, routinely exercising and taking your medication(s) as perscribed."
+                    },
+                    {"tipId": 37, "text": "Diabetes doesn’t stop. It is 24/7, 365 days a year."},
+                    {"tipId": 38, "text": "Two out of three people with diabetes die from heart disease or stroke."},
+                    {"tipId": 39, "text": "Diabetes is the leading cause of kidney failure."},
+                    {
+                        "tipId": 40,
+                        "text": "Diabetes is the leading cause of new cases of blindness among adults aged 20-74"
+                    },
+                    {
+                        "tipId": 41,
+                        "text": "The rate of foot or leg amputation for people with diabetes is 10 times higher than for people without diabetes."
+                    },
+                    {
+                        "tipId": 42,
+                        "text": "About 60-70 percent of people with diabetes have mild to severe forms of nerve damage that could result in pain in the feet or hands, slowed digestion, sexual dysfunction, and other nerve problems."
+                    },
+                    {
+                        "tipId": 43,
+                        "text": "Getting an annual flu shot has been shown to reduce diabetes-related hospitalizations. Be sure to get your flu shot."
+                    },
+                    {
+                        "tipId": 44,
+                        "text": "Keeping your blood sugar levels as close to normal as possible can be a lifesaver. "
+                    },
+                    {
+                        "tipId": 45,
+                        "text": "Good blood sugar control can prevent or slow the progress of many complications of diabetes, giving you extra years of healthy, active life."
+                    },
+                    {
+                        "tipId": 46,
+                        "text": "Monitoring your carbohydrate intake is a key strategy in achieving blood sugar control."
+                    },
+                    {
+                        "tipId": 47,
+                        "text": "Become more physically active. It is recommended that you exercise 150 min/ week or as directed by your healthcare provider."
+                    },
+                    {
+                        "tipId": 48,
+                        "text": "Regular exercise has been shown to improve blood sugar, reduce cardiovascular risk factors, contribute to weight loss, and improve overall well-being."
+                    },
+                    {"tipId": 49, "text": "Please avoid or limit sugary beverages."},
+                    {
+                        "tipId": 50,
+                        "text": "Having A1C below or around 7 has been shown to reduce complications of diabetes."
+                    },
+                    {
+                        "tipId": 51,
+                        "text": "Improved control of your blood sugar levels can significantly decrease your chance of kidney and eye disease."
+                    },
+                    {
+                        "tipId": 52,
+                        "text": "Decreasing your body weight by 7% and incorporating physical activity such as walking at least 150 min/week can really make a difference in managing your diabetes."
+                    },
+                    {
+                        "tipId": 53,
+                        "text": "Please limit alcohol consumption to one drink a day or less for women and two drinks per day or less for adult men."
+                    },
+                    {
+                        "tipId": 54,
+                        "text": "All individuals with diabetes should examine their feet daily and wear proper foot wear. "
+                    },
+                    {"tipId": 55, "text": "Depression affects about 20-25% of people with diabetes."},
+                    {
+                        "tipId": 56,
+                        "text": "Early detection of sores, blisters, or red spots on your feet can prevent complications such as infection and/or amputation."
+                    }
+                ]
+            },
+            {
+                "tipSetId": 6,
+                "comment": "Blood Glucose - Alert High Range",
+                "tip": [
+                    {
+                        "tipId": 57,
+                        "text": "Controlling your blood sugar levels can decrease your chance of kidney and eye disease."
+                    },
+                    {
+                        "tipId": 58,
+                        "text": "Make sure you have your Medical ID with you at all times.  This will help to identify you as being a diabetic and needing special care."
+                    },
+                    {"tipId": 59, "text": "Consistently high blood sugar levels can cause damage to your heart."}
+                ]
+            },
+            {
+                "tipSetId": 7,
+                "comment": "Blood Glucose - Alert Low Range",
+                "tip": [
+                    {
+                        "tipId": 60,
+                        "text": "Please make sure that you are prepared for episodes of low blood sugar by having glucose tablets or some other form of simple carbohydrate, such as hard candies or juice, available when needed."
+                    },
+                    {
+                        "tipId": 61,
+                        "text": "It is important that you know the signs and symptoms of when your blood sugar is getting low."
+                    },
+                    {
+                        "tipId": 62,
+                        "text": "Signs that your blood sugar may be low include sleepiness, blurred vision, shakiness, nervousness, and irritability."
+                    },
+                    {
+                        "tipId": 63,
+                        "text": "Make sure you have your Medical ID with you at all times.  This will help to identify you as being a diabetic and needing special care."
+                    }
+                ]
+            }
+        ]
+    },
+    "updates": null
+}
