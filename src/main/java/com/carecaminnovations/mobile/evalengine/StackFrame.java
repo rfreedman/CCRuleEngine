@@ -1,17 +1,15 @@
 package com.carecaminnovations.mobile.evalengine;
 
+import com.carecaminnovations.mobile.model.Action;
 import com.carecaminnovations.mobile.model.Results;
-import net.minidev.json.JSONArray;
-import net.minidev.json.JSONObject;
 
-import java.util.AbstractMap;
 
 /**
  * A frame on the evaluation stack
  */
 public abstract class StackFrame {
 
-    private JSONArray actions;
+    private Action[] actions;
     private Integer lastCompletedActionIndex;
 
     /** results produced while evaluating this frame - primarily for form (question set) display, but possibly also for message (message set) display */
@@ -21,7 +19,7 @@ public abstract class StackFrame {
     public StackFrame() {
     }
 
-    public StackFrame(JSONArray actions) {
+    public StackFrame(Action[] actions) {
         this.actions = actions;
     }
 
@@ -33,11 +31,11 @@ public abstract class StackFrame {
         this.results = results;
     }
 
-    public JSONArray getActions() {
+    public Action[] getActions() {
         return actions;
     }
 
-    public void setActions(JSONArray actions) {
+    public void setActions(Action[] actions) {
         this.actions = actions;
     }
 
@@ -57,7 +55,7 @@ public abstract class StackFrame {
                 break;
             }
 
-            if(lastCompletedActionIndex.intValue() != actions.size() - 1) {
+            if(lastCompletedActionIndex.intValue() != actions.length - 1) {
                 result = true; // the last completed action is not the final action in the list
                 break;
             }
@@ -67,8 +65,8 @@ public abstract class StackFrame {
         return result;
     }
 
-    public JSONObject getFirstUncompletedAction() {
-        JSONObject result = null;
+    public Action getFirstUncompletedAction() {
+        Action result = null;
 
         do {
             if(actions == null) {
@@ -76,15 +74,15 @@ public abstract class StackFrame {
             }
 
             if(lastCompletedActionIndex == null) {
-                result = (JSONObject) actions.get(0); // none completed, so return the first one
+                result = actions[0]; // none completed, so return the first one
             }
 
             int uncompletedIndex = lastCompletedActionIndex == null ? 0 : lastCompletedActionIndex + 1;
-            if(uncompletedIndex > actions.size() - 1) {
+            if(uncompletedIndex > actions.length - 1) {
                 break; // the last one is completed, there are no more
             }
 
-            result = (JSONObject) actions.get(uncompletedIndex);
+            result = actions[uncompletedIndex];
 
         } while(false);
 

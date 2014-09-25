@@ -1,5 +1,7 @@
 package com.carecaminnovations.mobile.evalengine;
 
+import com.carecaminnovations.mobile.model.Action;
+import com.google.gson.GsonBuilder;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
@@ -10,29 +12,40 @@ import net.minidev.json.JSONObject;
 public class FormStackFrame extends StackFrame {
     private JSONObject form = null;
 
-    private JSONArray answerActions;
+    private Action[] answerActions;
     private Integer lastCompletedAnswerActionIndex;
 
-    private JSONArray questionSetActions;
+    private Action[] questionSetActions;
     private Integer lastCompletedQuestionSetActionIndex;
 
     private Integer questionSetId;
+
+
+    private static Action[] actionsFromJSON(JSONArray actionsJson) {
+        Action[] result = new Action[actionsJson.size()];
+        for(int i = 0; i < actionsJson.size(); i++) {
+            JSONObject actionJSon = (JSONObject) actionsJson.get(i);
+            Action action = new GsonBuilder().create().fromJson(actionJSon.toString(), Action.class);
+            result[i] = action;
+        }
+        return result;
+    }
 
     /** for GSon only */
     public FormStackFrame() {
     }
 
     public FormStackFrame(final JSONObject form) {
-        super((JSONArray)form.get("actions"));
+        super(actionsFromJSON((JSONArray)form.get("actions")));
         this.form = form;
     }
 
     public void setAnswerActions(final JSONArray answerActions) {
-        this.answerActions = answerActions;
+        this.answerActions = actionsFromJSON(answerActions);
     }
 
     public void setQuestionSetActions(final JSONArray questionSetActions) {
-        this.questionSetActions = questionSetActions;
+        this.questionSetActions = actionsFromJSON(questionSetActions);
     }
 
     public void setQuestionSetId(Integer questionSetId) {
@@ -57,7 +70,7 @@ public class FormStackFrame extends StackFrame {
                 break;
             }
 
-            if (lastCompletedAnswerActionIndex.intValue() != answerActions.size() - 1) {
+            if (lastCompletedAnswerActionIndex.intValue() != answerActions.length - 1) {
                 result = true; // the last completed action is not the final action in the list
                 break;
             }
@@ -81,7 +94,7 @@ public class FormStackFrame extends StackFrame {
                 break;
             }
 
-            if (lastCompletedQuestionSetActionIndex.intValue() != questionSetActions.size() - 1) {
+            if (lastCompletedQuestionSetActionIndex.intValue() != questionSetActions.length - 1) {
                 result = true; // the last completed action is not the final action in the list
                 break;
             }
@@ -114,9 +127,9 @@ public class FormStackFrame extends StackFrame {
     }
 
     @Override
-    public JSONObject getFirstUncompletedAction() {
+    public Action getFirstUncompletedAction() {
 
-        JSONObject result;
+        Action result;
 
         do {
             if(hasMoreAnswerActions()) {
@@ -136,8 +149,8 @@ public class FormStackFrame extends StackFrame {
         return result;
     }
 
-    private JSONObject getFirstUncompletedAnswerAction() {
-        JSONObject result = null;
+    private Action getFirstUncompletedAnswerAction() {
+        Action result = null;
 
         do {
             if(answerActions == null) {
@@ -145,23 +158,23 @@ public class FormStackFrame extends StackFrame {
             }
 
             if(lastCompletedAnswerActionIndex == null) {
-                result = (JSONObject) answerActions.get(0); // none completed, so return the first one
+                result = answerActions[0]; // none completed, so return the first one
             }
 
             int uncompletedIndex = lastCompletedAnswerActionIndex == null ? 0 : lastCompletedAnswerActionIndex + 1;
-            if(uncompletedIndex > answerActions.size() - 1) {
+            if(uncompletedIndex > answerActions.length - 1) {
                 break; // the last one is completed, there are no more
             }
 
-            result = (JSONObject) answerActions.get(uncompletedIndex);
+            result = answerActions[uncompletedIndex];
 
         } while(false);
 
         return result;
     }
 
-    private JSONObject getFirstUncompletedQuestionSetAction() {
-        JSONObject result = null;
+    private Action getFirstUncompletedQuestionSetAction() {
+        Action result = null;
 
         do {
             if(questionSetActions == null) {
@@ -169,15 +182,15 @@ public class FormStackFrame extends StackFrame {
             }
 
             if(lastCompletedQuestionSetActionIndex == null) {
-                result = (JSONObject) questionSetActions.get(0); // none completed, so return the first one
+                result = questionSetActions[0]; // none completed, so return the first one
             }
 
             int uncompletedIndex = lastCompletedQuestionSetActionIndex == null ? 0 : lastCompletedQuestionSetActionIndex + 1;
-            if(uncompletedIndex > questionSetActions.size() - 1) {
+            if(uncompletedIndex > questionSetActions.length - 1) {
                 break; // the last one is completed, there are no more
             }
 
-            result = (JSONObject) questionSetActions.get(uncompletedIndex);
+            result = questionSetActions[uncompletedIndex];
 
         } while(false);
 

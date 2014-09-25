@@ -49,14 +49,12 @@ Form -> array of actions to be processed sequentially (go all the way down the t
  */
 
 import com.carecaminnovations.mobile.json.JsonRepository;
+import com.carecaminnovations.mobile.model.Action;
 import com.carecaminnovations.mobile.model.Results;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.carecaminnovations.mobile.evalengine.EvalStack.EMPTY_STACK_FRAME;
 
@@ -139,7 +137,6 @@ public class EvaluationEngine implements StackFrameEvaluator {
         assert currentFrame instanceof FormStackFrame; // || currentFrame instanceof MessageStackFrame
 
         currentFrame.markCurrentActionCompleted();
-
         currentFrame.setResults(results);
 
         // populate the current stack frame with questionSet actions, if any
@@ -148,13 +145,17 @@ public class EvaluationEngine implements StackFrameEvaluator {
         JSONObject questionSet = getQuestionSet(questionSetId);
         ((FormStackFrame) currentFrame).setQuestionSetActions((JSONArray) questionSet.get("actions"));
 
-
-
         // todo - populate the currentFrame with answer actions - these need to be matched up with the answers,
         // so maybe we bundle question, answer, and actions together?
 
         // restart evaluation
         state.setShouldRun(true); // allow the engine to continue
+
+        // we directly modified a frame on the stack
+        // instead of going through wrapper methods,
+        // so we need to save the new state
+        persistState();
+
         evaluateTopFrame();
     }
 
@@ -164,7 +165,7 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
         StackFrame resultStackFrame = EMPTY_STACK_FRAME;
 
-        JSONObject currentAction = frame.getFirstUncompletedAction();
+        Action currentAction = frame.getFirstUncompletedAction();
         if(currentAction != null) {
             resultStackFrame = performAction(currentAction);
         }
@@ -191,6 +192,7 @@ public class EvaluationEngine implements StackFrameEvaluator {
     }
 
     private void initializeEngine(final int activityId, final int stepId) {
+        logger.debug("\n===========================================");
         logger.debug("initializing for evaluation of form for activityId: " + activityId + ", stepId: " + stepId);
 
         state = stateRepository.loadState(activityId, stepId);
@@ -229,6 +231,7 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
         while(state.getShouldRun() && !stackIsEmpty()) {
 
+            logger.debug("\n===========================================================");
             logger.debug("evaluateTopFrame - " + getStackReport());
 
             StackFrame currentFrame = peekStack();
@@ -258,10 +261,11 @@ public class EvaluationEngine implements StackFrameEvaluator {
             }
         }
 
-        logger.debug("evaluation engine stopped, " + getStackReport());
+        logger.debug("evaluation engine is in stopped state, shouldRun = " + state.getShouldRun() + ", " + getStackReport());
 
         if(peekStack() == EMPTY_STACK_FRAME) {
 
+            logger.debug("\n===========================================");
             logger.debug("stack is empty, so evaluation is complete");
 
             // send the stepResults to the database for later posting
@@ -273,27 +277,28 @@ public class EvaluationEngine implements StackFrameEvaluator {
     }
 
 
-    private StackFrame performAction(JSONObject action) {
+    private StackFrame performAction(Action action) {
         StackFrame resultStackFrame = EMPTY_STACK_FRAME;
 
+        logger.debug("\n -----------------------------------------------------------");
         logger.debug("before performing action: " + action + ", " + getStackReport());
 
-        final int actionTypeCode = ((Integer) action.get("type")).intValue();
+        final int actionTypeCode = action.getType();
         final ActionType actionType = ActionType.fromCode(actionTypeCode);
         switch(actionType) {
             case DISPLAY_QUESTION_SET:
-                resultStackFrame = displayQuestionSet(((Integer) action.get("questionSetId")).intValue());
+                resultStackFrame = displayQuestionSet(action.getQuestionSetId());
                 // this type of action is completed when the answers are applied
                 break;
 
             case RUN_RULE_SET:
                 logger.warn("ruleSet eval not implemented yet, so marking ruleSet action complete");
-                peekStack().markCurrentActionCompleted();
+                markCurrentActionCompleted();
                 break;
 
             default:
                 logger.warn("don't know what to do with action type " + actionType + ", so marking it complete");
-                peekStack().markCurrentActionCompleted();
+                markCurrentActionCompleted();
                 break;
 
         }
@@ -303,9 +308,6 @@ public class EvaluationEngine implements StackFrameEvaluator {
         return resultStackFrame;
     }
 
-
-
-
     private StackFrame displayQuestionSet(int questionSetId) {
         logger.debug("displaying questionSet: " + questionSetId);
 
@@ -314,13 +316,22 @@ public class EvaluationEngine implements StackFrameEvaluator {
         StackFrame currentFrame = peekStack();
         assert currentFrame instanceof FormStackFrame;
 
-        JSONObject questionSet = getQuestionSet(questionSetId);
         ((FormStackFrame) currentFrame).setQuestionSetId(questionSetId);
-
 
         // todo - request display of the question set, perhaps with an android intent, or bus message
         state.setShouldRun(false);
+
+        // we directly modified a frame on the stack
+        // instead of going through wrapper methods,
+        // so we need to save the new state
+        persistState();
+
         return new UserInputStackFrame(); // todo: params?
+    }
+
+    private void markCurrentActionCompleted() {
+        peekStack().markCurrentActionCompleted();
+        persistState();
     }
 
     private StackFrame peekStack() {
@@ -328,11 +339,14 @@ public class EvaluationEngine implements StackFrameEvaluator {
     }
 
     private StackFrame popStack() {
-        return state.getEvalStack().pop();
+        StackFrame result = state.getEvalStack().pop();
+        persistState();
+        return result;
     }
 
     private void pushStack(StackFrame frame) {
         state.getEvalStack().push(frame);
+        persistState();
     }
 
     private StackFrame buildStackFrameForForm(final int formId) {
