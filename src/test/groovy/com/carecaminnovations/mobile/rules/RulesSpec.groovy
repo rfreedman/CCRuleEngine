@@ -13,12 +13,16 @@ class RulesSpec extends Specification {
 
     def setup() {
         // these would typically be downloaded by the mobile app via the api
+
+        String activitiesJson = IOUtils.toString(getClass().getResourceAsStream("/activities.json"), "UTF-8");
+        String formsJson = IOUtils.toString(getClass().getResourceAsStream("/form.json"), "UTF-8");
+        String questionSetsJson = IOUtils.toString(getClass().getResourceAsStream("/questionset.json"), "UTF-8");
         String ruleSetJson     = IOUtils.toString(getClass().getResourceAsStream("/ruleset-prioritized.json"), "UTF-8");
         String chartJson       = IOUtils.toString(getClass().getResourceAsStream("/chart.json"), "UTF-8");
         String messagesSetJson = IOUtils.toString(getClass().getResourceAsStream("/messageset.json"), "UTF-8");
         String tipSetsJson     = IOUtils.toString(getClass().getResourceAsStream("/tipset.json"), "UTF-8");
 
-        JsonRepository jsonProcessor = new JsonRepositoryImpl(ruleSetJson, chartJson, messagesSetJson, tipSetsJson);
+        JsonRepository jsonProcessor = new JsonRepositoryImpl(activitiesJson, formsJson, questionSetsJson, ruleSetJson, chartJson, messagesSetJson, tipSetsJson);
         rulesEngine = new RulesEngineImpl(jsonProcessor);
     }
 

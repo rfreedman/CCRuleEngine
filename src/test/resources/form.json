@@ -1,0 +1,422 @@
+{
+    "consents": null,
+    "response": [
+        {
+            "formId": 24,
+            "name": "Activity/Exercise",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 24
+                }
+            ]
+        },
+        {
+            "formId": 5,
+            "name": "Blood Glucose",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 2
+                }
+            ]
+        },
+        {
+            "formId": 2,
+            "name": "Blood Pressure",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 1
+                }
+            ]
+        },
+        {
+            "formId": 14,
+            "name": "Breathing",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 14
+                }
+            ]
+        },
+        {
+            "formId": 15,
+            "name": "Coughing",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 15
+                }
+            ]
+        },
+        {
+            "formId": 25,
+            "name": "Depression",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 25
+                }
+            ]
+        },
+        {
+            "formId": 26,
+            "name": "Diet/Nutrition",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 26
+                }
+            ]
+        },
+        {
+            "formId": 16,
+            "name": "Dizziness",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 16
+                }
+            ]
+        },
+        {
+            "formId": 17,
+            "name": "Eating",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 17
+                }
+            ]
+        },
+        {
+            "formId": 9,
+            "name": "Follow-Up - Made Post Discharge (PCP)",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 10
+                }
+            ]
+        },
+        {
+            "formId": 11,
+            "name": "Follow-Up - Made Post to Discharge (Specialist)",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 12
+                }
+            ]
+        },
+        {
+            "formId": 10,
+            "name": "Follow-Up - Made Prior to Discharge (Cardiologist)",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 11
+                }
+            ]
+        },
+        {
+            "formId": 8,
+            "name": "Follow-Up - Made Prior to Discharge (PCP)",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 9
+                }
+            ]
+        },
+        {
+            "formId": 18,
+            "name": "Foot Exam",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 18
+                }
+            ]
+        },
+        {
+            "formId": 13,
+            "name": "Medical Equipment",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 13
+                }
+            ]
+        },
+        {
+            "formId": 12,
+            "name": "Medical Equipment (DME)",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 13
+                }
+            ]
+        },
+        {
+            "formId": 31,
+            "name": "Ophthalmologist",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 31
+                }
+            ]
+        },
+        {
+            "formId": 27,
+            "name": "Overall Wellbeing",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 27
+                }
+            ]
+        },
+        {
+            "formId": 19,
+            "name": "Pain",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 19
+                }
+            ]
+        },
+        {
+            "formId": 6,
+            "name": "Peak Flow Meter",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 5
+                }
+            ]
+        },
+        {
+            "formId": 7,
+            "name": "Prescription Follow-Up",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 8
+                }
+            ]
+        },
+        {
+            "formId": 32,
+            "name": "Pulse",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 3
+                }
+            ]
+        },
+        {
+            "formId": 3,
+            "name": "Pulse Ox",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 4
+                }
+            ]
+        },
+        {
+            "formId": 20,
+            "name": "Range of Motion",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 20
+                }
+            ]
+        },
+        {
+            "formId": 28,
+            "name": "Rest",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 28
+                }
+            ]
+        },
+        {
+            "formId": 21,
+            "name": "Skin Assessment",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 21
+                }
+            ]
+        },
+        {
+            "formId": 22,
+            "name": "Sleeping",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 22
+                }
+            ]
+        },
+        {
+            "formId": 29,
+            "name": "Smoking Cessation",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 29
+                }
+            ]
+        },
+        {
+            "formId": 23,
+            "name": "Swelling (Edema Check)",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 23
+                }
+            ]
+        },
+        {
+            "formId": 4,
+            "name": "Temperature",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 6
+                }
+            ]
+        },
+        {
+            "formId": 30,
+            "name": "Vaccinations",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 30
+                }
+            ]
+        },
+        {
+            "formId": 1,
+            "name": "Weight",
+            "status": 1,
+            "reportable": true,
+            "ruleSetId": null,
+            "actions": [
+                {
+                    "type": 0,
+                    "questionSetId": 7
+                }
+            ]
+        }
+    ],
+    "updates": null
+}

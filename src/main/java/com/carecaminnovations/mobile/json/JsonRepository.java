@@ -10,6 +10,9 @@ import java.io.InputStream;
 public interface JsonRepository {
 
     public static enum JSONDocType {
+        ACTIVITIES("activities"),
+        FORMS("form"),
+        QUESTIONSETS("questionset"),
         RULESETS("rules"),
         CHART("chart"),
         MESSAGESETS("messagesets"),
@@ -50,6 +53,13 @@ public interface JsonRepository {
      * @param ruleSetId the id of the RuleSet
      */
     public JSONArray lookupRuleSet(final int ruleSetId);
+
+
+    public JSONObject lookupActivity(final int activityId);
+
+    public JSONObject lookupForm(final int formId);
+
+    public JSONObject lookupQuestionSet(final int questionSetId);
 
     /**
      * Retrieves JSON representing a MessageSet

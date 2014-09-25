@@ -33,11 +33,16 @@ public class JsonRepositoryImpl implements JsonRepository {
      * @param messageSetsJson Text of the messageSets JSON document
      * @param tipSetsJson Text of the tipSets JSON document
      */
-    public JsonRepositoryImpl(final String ruleSetsJson, final String chartJson, final String messageSetsJson, final String tipSetsJson) {
+    public JsonRepositoryImpl(final String activitiesJson, final String formsJson, final String questionSetsJson, final String ruleSetsJson, final String chartJson, final String messageSetsJson, final String tipSetsJson) {
 
         // These are the 'primary' json document types.
         // The rules typically refer only to the "chart" data, but if other data is needed,
         // a document can be added with another key, and referred to by that key in a rule
+        putJsonDocument(JSONDocType.ACTIVITIES.getAlias(), activitiesJson);
+        putJsonDocument(JSONDocType.FORMS.getAlias(), formsJson);
+        putJsonDocument(JSONDocType.QUESTIONSETS.getAlias(), questionSetsJson);
+
+
         putJsonDocument(JSONDocType.RULESETS.getAlias(), ruleSetsJson);
         putJsonDocument(JSONDocType.CHART.getAlias(), chartJson);
         putJsonDocument(JSONDocType.MESSAGESETS.getAlias(), messageSetsJson);
@@ -60,6 +65,22 @@ public class JsonRepositoryImpl implements JsonRepository {
         jsonDocs.put(key, value);
     }
 
+    @Override
+    public JSONObject lookupActivity(final int activityId) {
+        final String activitiesJson = jsonDocs.get(JSONDocType.ACTIVITIES.getAlias());
+
+        JSONArray activities =  JsonPath.read(activitiesJson, "$..response[?(@.activityId == " + activityId + ")]");
+
+        return (activities == null || activities.size() == 0) ? null : (JSONObject) activities.get(0);
+    }
+
+    public JSONObject lookupForm(final int formId) {
+        final String formsJson = jsonDocs.get(JSONDocType.FORMS.getAlias());
+        JSONArray forms = JsonPath.read(formsJson, "$..response[?(@.formId == " + formId + ")]");
+
+        return (forms == null || forms.size() == 0) ? null : (JSONObject) forms.get(0);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -68,6 +89,18 @@ public class JsonRepositoryImpl implements JsonRepository {
         final String ruleSetsJson = jsonDocs.get(JSONDocType.RULESETS.getAlias());
         return JsonPath.read(ruleSetsJson, "$..resultSets[?(@.ruleSetId == " + ruleSetId + ")]");
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JSONObject lookupQuestionSet(final int questionSetId) {
+        final String questionSetsJson = jsonDocs.get(JSONDocType.QUESTIONSETS.getAlias());
+        JSONArray questionSets =  JsonPath.read(questionSetsJson, "$..response[?(@.questionSetId == " + questionSetId + ")]");
+
+        return (questionSets == null || questionSets.size() == 0) ? null : (JSONObject) questionSets.get(0);
+    }
+
 
     /**
      * {@inheritDoc}
