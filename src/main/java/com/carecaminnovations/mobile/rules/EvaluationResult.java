@@ -22,6 +22,16 @@ public class EvaluationResult {
         this.buttons = buttons;
     }
 
+    @Override
+    public String toString() {
+        return "EvaluationResult{" +
+            "action=" + action +
+            ", message=" + message +
+            ", tip=" + tip +
+            ", buttons=" + buttons +
+            '}';
+    }
+
     private static class EmptyEvaluationResult extends EvaluationResult {
         private EmptyEvaluationResult() {
             super(null, null, null, null);

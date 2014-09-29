@@ -4,6 +4,7 @@ import com.carecaminnovations.mobile.json.JsonRepository
 import com.carecaminnovations.mobile.json.JsonRepositoryImpl
 import com.carecaminnovations.mobile.model.ResultSet
 import com.carecaminnovations.mobile.model.Results
+import com.carecaminnovations.mobile.rules.RulesEngineImpl
 import org.apache.commons.io.IOUtils
 import spock.lang.Specification
 
@@ -22,28 +23,12 @@ class EvaluationEngineSpec extends Specification {
         String chartJson       = IOUtils.toString(getClass().getResourceAsStream("/chart.json"), "UTF-8")
         String messagesSetJson = IOUtils.toString(getClass().getResourceAsStream("/messageset.json"), "UTF-8")
         String tipSetsJson     = IOUtils.toString(getClass().getResourceAsStream("/tipset.json"), "UTF-8")
+        JsonRepository jsonRepository = new JsonRepositoryImpl(activitiesJson, formsJson, questionSetsJson, ruleSetJson, chartJson, messagesSetJson, tipSetsJson)
 
         evaluationEngine = new EvaluationEngine()
-        JsonRepository jsonProcessor = new JsonRepositoryImpl(activitiesJson, formsJson, questionSetsJson, ruleSetJson, chartJson, messagesSetJson, tipSetsJson)
-        evaluationEngine.setJsonRepository(jsonProcessor)
-        /*
-        evaluationEngine.setStateRepository(new EvaluationEngineStateRepository() {
-
-            @Override
-            void saveState(EvaluationEngineState state) {
-            }
-
-            @Override
-            EvaluationEngineState loadState(int activityId, int stepId) {
-                return null;
-            }
-
-            @Override
-            void removeState(int activityId, int stepId) {
-            }
-        });
-        */
+        evaluationEngine.setJsonRepository(jsonRepository)
         evaluationEngine.setStateRepository(new JSONEvalEngineStateRepo());
+        evaluationEngine.setRulesEngine(new RulesEngineImpl(jsonRepository))
     }
 
 

@@ -51,10 +51,16 @@ Form -> array of actions to be processed sequentially (go all the way down the t
 import com.carecaminnovations.mobile.json.JsonRepository;
 import com.carecaminnovations.mobile.model.Action;
 import com.carecaminnovations.mobile.model.Results;
+import com.carecaminnovations.mobile.rules.EvaluationResult;
+import com.carecaminnovations.mobile.rules.RulesEngine;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.InputMismatchException;
+import java.util.Map;
 
 import static com.carecaminnovations.mobile.evalengine.EvalStack.EMPTY_STACK_FRAME;
 
@@ -84,6 +90,8 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
     private EvaluationEngineStateRepository stateRepository;
     private JsonRepository jsonRepository;
+    private RulesEngine rulesEngine;
+
 
     /**
      * The state of the evaluation engine.
@@ -98,6 +106,10 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
     public void setJsonRepository(final JsonRepository jsonRepository) {
         this.jsonRepository = jsonRepository;
+    }
+
+    public void setRulesEngine(RulesEngine rulesEngine) {
+        this.rulesEngine = rulesEngine;
     }
 
     /** The root of the evaluation hierarchy - this happens when the user selects a step in an activity.
@@ -139,14 +151,9 @@ public class EvaluationEngine implements StackFrameEvaluator {
         currentFrame.markCurrentActionCompleted();
         currentFrame.setResults(results);
 
-        // populate the current stack frame with questionSet actions, if any
         assert currentFrame instanceof FormStackFrame;
-        int questionSetId = ((FormStackFrame) currentFrame).getQuestionSetId();
-        JSONObject questionSet = getQuestionSet(questionSetId);
-        ((FormStackFrame) currentFrame).setQuestionSetActions((JSONArray) questionSet.get("actions"));
-
-        // todo - populate the currentFrame with answer actions - these need to be matched up with the answers,
-        // so maybe we bundle question, answer, and actions together?
+        populateStackFrameQuestionSetActions((FormStackFrame) currentFrame);
+        populateStackFrameAnswerActions((FormStackFrame) currentFrame);
 
         // restart evaluation
         state.setShouldRun(true); // allow the engine to continue
@@ -167,8 +174,26 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
         Action currentAction = frame.getFirstUncompletedAction();
         if(currentAction != null) {
+            logger.debug("evaluate - action is: " + currentAction);
             resultStackFrame = performAction(currentAction);
         }
+
+        logger.debug("evaluate - result of action: " + currentAction + " is: " + resultStackFrame);
+
+        return resultStackFrame;
+    }
+
+    // todo - if nothing different, combine the multiple evaluate(...Frame) methods
+    public StackFrame evaluate(MessageStackFrame frame) {
+        StackFrame resultStackFrame = EMPTY_STACK_FRAME;
+
+        Action currentAction = frame.getFirstUncompletedAction();
+        if(currentAction != null) {
+            logger.debug("evaluate - action is: " + currentAction);
+            resultStackFrame = performAction(currentAction);
+        }
+
+        logger.debug("evaluate - result of action: " + currentAction + " is: " + resultStackFrame);
 
         return resultStackFrame;
     }
@@ -255,6 +280,7 @@ public class EvaluationEngine implements StackFrameEvaluator {
             }
 
             if(peekStack().allActionsCompleted()) {
+                logger.debug("\n -----------------------------------------------------------");
                 logger.debug("top frame: " + peekStack() + " - allActionsCompleted, so popping");
                 popStack();
                 logger.debug("after popping stack, " + getStackReport());
@@ -274,8 +300,16 @@ public class EvaluationEngine implements StackFrameEvaluator {
             // remove the persistent version
             stateRepository.removeState(state.getTopLevelActivityId(), state.getTopLevelStepId());
         }
-    }
 
+        // if we get here, we've stopped without completing a flow (the stack is not empty),
+        // typically because we need user input
+        if(peekStack() instanceof UserInputStackFrame) {
+            UserInputStackFrame userInputStackFrame = (UserInputStackFrame) peekStack();
+            if(!userInputStackFrame.isInputRequested()) {
+                requestUserInput(userInputStackFrame);
+            }
+        }
+    }
 
     private StackFrame performAction(Action action) {
         StackFrame resultStackFrame = EMPTY_STACK_FRAME;
@@ -292,8 +326,13 @@ public class EvaluationEngine implements StackFrameEvaluator {
                 break;
 
             case RUN_RULE_SET:
-                logger.warn("ruleSet eval not implemented yet, so marking ruleSet action complete");
-                markCurrentActionCompleted();
+                try {
+                    resultStackFrame = evaluateRules(action);
+                    markCurrentActionCompleted();
+                } catch(Exception ex) {
+                    logger.error("rule eval threw exception:", ex);
+                    markCurrentActionCompleted();
+                }
                 break;
 
             default:
@@ -303,6 +342,7 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
         }
 
+        logger.debug("\n -----------------------------------------------------------");
         logger.debug("after performing action: " + action + ", " + getStackReport());
 
         return resultStackFrame;
@@ -318,7 +358,6 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
         ((FormStackFrame) currentFrame).setQuestionSetId(questionSetId);
 
-        // todo - request display of the question set, perhaps with an android intent, or bus message
         state.setShouldRun(false);
 
         // we directly modified a frame on the stack
@@ -326,8 +365,55 @@ public class EvaluationEngine implements StackFrameEvaluator {
         // so we need to save the new state
         persistState();
 
-        return new UserInputStackFrame(); // todo: params?
+
+        return new QuestionSetUserInputStackFrame(questionSetId);
     }
+
+    private StackFrame evaluateRules(Action action) throws Exception {
+        StackFrame resultFrame = EMPTY_STACK_FRAME; // default
+
+        Integer ruleSetId = action.getRuleSetId();
+
+        Map<Integer, Number> previousAnswers = null; // todo - how do we get this?
+
+        // fake the input
+        previousAnswers = new HashMap<Integer, Number>();
+        previousAnswers.put(3, 80); // blood glucose normal
+
+        logger.debug("evaluating ruleSet " + ruleSetId);
+
+        EvaluationResult evaluationResult = rulesEngine.evaluateRules(ruleSetId, previousAnswers);
+
+        logger.debug("result of evaluating ruleSet " + ruleSetId + ": " + evaluationResult);
+
+        // TODO - TODO - we should just be calling performAction here - the message, tip, and buttons should be bundled in the action - might need multiple Action subclasses?
+        // TODO - differentiate result types - at the moment, we only support 'no result' or 'display a message set'
+        if(evaluationResult != EvaluationResult.EMPTY) {
+            switch(evaluationResult.action.getType()) {
+                case 1: // display a message set
+                    logger.debug("(NOT YET) creating message set stack frame for rule evaluation result");
+                    // TODO - create a 'MessageSet' Stack Frame
+                    /*
+                    EvaluationResult{
+                        action = Action{ type=1, questionSetId=0, messageSetId=1, ruleSetId=0 },
+                        message = com.carecaminnovations.mobile.model.Message@63ce15f6,
+                        tip=com.carecaminnovations.mobile.model.Tip@6f03fcaa,
+                        buttons=[com.carecaminnovations.mobile.model.Button@6ec135d6]
+                    }
+                    */
+                    logger.debug("would create message set stack frame with message: " + evaluationResult.message.getText() + ", tip: " + evaluationResult.tip.getText() + ", First button: " + evaluationResult.buttons.get(0).getText());
+
+
+                    break;
+
+                default: // unhandled
+                    throw new UnsupportedOperationException("ruleSet Action Type: " + evaluationResult.action.getType() + " not implemented");
+            }
+        }
+
+        return resultFrame;
+    }
+
 
     private void markCurrentActionCompleted() {
         peekStack().markCurrentActionCompleted();
@@ -375,6 +461,17 @@ public class EvaluationEngine implements StackFrameEvaluator {
         return null; //new StackFrame(name, actions);
     }
 
+    private void populateStackFrameQuestionSetActions(final FormStackFrame frame) {
+        int questionSetId = frame.getQuestionSetId();
+        JSONObject questionSet = getQuestionSet(questionSetId);
+        frame.setQuestionSetActions((JSONArray) questionSet.get("actions"));
+    }
+
+    private void populateStackFrameAnswerActions(final FormStackFrame frame) {
+        // todo - populate the currentFrame with answer actions - these need to be matched up with the answers,
+        // so maybe we bundle question, answer, and actions together?
+    }
+
     private JSONObject getActivity(final int activityId) {
         return jsonRepository.lookupActivity(activityId);
     }
@@ -413,6 +510,15 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
     private void persistState() {
         stateRepository.saveState(state);
+    }
+
+    private void requestUserInput(final UserInputStackFrame frame) {
+        if(!frame.isInputRequested()) {
+            frame.setInputRequested(true);
+            persistState();
+            // TODO - request user input, probably via message bus
+            logger.debug("Request for user input: " + frame + ": NOT IMPLEMENTED YET");
+        }
     }
 
     private void reportResults() {

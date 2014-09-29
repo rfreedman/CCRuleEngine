@@ -37,4 +37,14 @@ public class Action {
 	public void setMessageSetId(int messageSetId) {
 		this.messageSetId = messageSetId;
 	}
+
+    @Override
+    public String toString() {
+        return "Action{" +
+            "type=" + type +
+            ", questionSetId=" + questionSetId +
+            ", messageSetId=" + messageSetId +
+            ", ruleSetId=" + ruleSetId +
+            '}';
+    }
 }

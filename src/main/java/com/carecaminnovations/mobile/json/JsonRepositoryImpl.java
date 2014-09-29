@@ -69,14 +69,17 @@ public class JsonRepositoryImpl implements JsonRepository {
     public JSONObject lookupActivity(final int activityId) {
         final String activitiesJson = jsonDocs.get(JSONDocType.ACTIVITIES.getAlias());
 
-        JSONArray activities =  JsonPath.read(activitiesJson, "$..response[?(@.activityId == " + activityId + ")]");
+        // JSONArray activities =  JsonPath.read(activitiesJson, "$..response[?(@.activityId == " + activityId + ")]");
+        JSONArray activities =  JsonPath.read(activitiesJson, "$..[?(@.activityId == " + activityId + " && @.activityType > 0)]");
 
         return (activities == null || activities.size() == 0) ? null : (JSONObject) activities.get(0);
     }
 
     public JSONObject lookupForm(final int formId) {
         final String formsJson = jsonDocs.get(JSONDocType.FORMS.getAlias());
-        JSONArray forms = JsonPath.read(formsJson, "$..response[?(@.formId == " + formId + ")]");
+
+        //JSONArray forms = JsonPath.read(formsJson, "$..response[?(@.formId == " + formId + ")]");
+        JSONArray forms = JsonPath.read(formsJson, "$..[?(@.formId == " + formId + ")]");
 
         return (forms == null || forms.size() == 0) ? null : (JSONObject) forms.get(0);
     }
@@ -87,7 +90,8 @@ public class JsonRepositoryImpl implements JsonRepository {
     @Override
     public JSONArray lookupRuleSet(final int ruleSetId) {
         final String ruleSetsJson = jsonDocs.get(JSONDocType.RULESETS.getAlias());
-        return JsonPath.read(ruleSetsJson, "$..resultSets[?(@.ruleSetId == " + ruleSetId + ")]");
+        //return JsonPath.read(ruleSetsJson, "$..resultSets[?(@.ruleSetId == " + ruleSetId + ")]");
+        return JsonPath.read(ruleSetsJson, "$..[?(@.ruleSetId == " + ruleSetId + ")]");
     }
 
     /**
@@ -96,7 +100,9 @@ public class JsonRepositoryImpl implements JsonRepository {
     @Override
     public JSONObject lookupQuestionSet(final int questionSetId) {
         final String questionSetsJson = jsonDocs.get(JSONDocType.QUESTIONSETS.getAlias());
-        JSONArray questionSets =  JsonPath.read(questionSetsJson, "$..response[?(@.questionSetId == " + questionSetId + ")]");
+
+        //JSONArray questionSets =  JsonPath.read(questionSetsJson, "$..response[?(@.questionSetId == " + questionSetId + ")]");
+        JSONArray questionSets =  JsonPath.read(questionSetsJson, "$..[?(@.questionSetId == " + questionSetId + ")]");
 
         return (questionSets == null || questionSets.size() == 0) ? null : (JSONObject) questionSets.get(0);
     }
@@ -108,7 +114,9 @@ public class JsonRepositoryImpl implements JsonRepository {
     @Override
     public JSONObject lookupMessageSet(final int messageSetId) {
         final String messageSetsJson = jsonDocs.get(JSONDocType.MESSAGESETS.getAlias());
-        return JsonPath.read(messageSetsJson, "$..messageSets[?(@.messageSetId == " + messageSetId + ")][0]");
+
+        //return JsonPath.read(messageSetsJson, "$..messageSets[?(@.messageSetId == " + messageSetId + ")][0]");
+        return JsonPath.read(messageSetsJson, "$..[?(@.messageSetId == " + messageSetId + ")][0]");
     }
 
     /**

@@ -56,7 +56,7 @@ class JSONEvalEngineStateRepo implements EvaluationEngineStateRepository {
     void removeState(int activityId, int stepId) {
         File file = getPersistenceFile(activityId, stepId)
 
-        logger.debug("attempting to delete state file: " + file.absolutePath)
+        logger.debug("deleting state file: " + file.absolutePath)
 
         if(file.exists()) {
             file.delete()

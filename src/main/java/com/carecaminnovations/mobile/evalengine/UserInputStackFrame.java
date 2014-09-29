@@ -6,19 +6,19 @@ package com.carecaminnovations.mobile.evalengine;
  * When the user eventually supplies input, the evaluation context must be restored if necessary,
  * and then the input must be applied to the last input action on the stack, and then evaluation continues.
  */
-public class UserInputStackFrame extends StackFrame {
+public abstract class UserInputStackFrame extends StackFrame {
+
+    private boolean inputRequested = false;
 
     public UserInputStackFrame() {
         super(null);
     }
 
-    @Override
-    public String toString() {
-        return "UserInputStackFrame";
+    public boolean isInputRequested() {
+        return inputRequested;
     }
 
-    @Override
-    public StackFrame accept(StackFrameEvaluator evaluator) {
-        return evaluator.evaluate(this);
+    public void setInputRequested(boolean inputRequested) {
+        this.inputRequested = inputRequested;
     }
 }

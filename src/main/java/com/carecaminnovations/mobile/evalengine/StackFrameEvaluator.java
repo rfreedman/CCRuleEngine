@@ -5,5 +5,6 @@ package com.carecaminnovations.mobile.evalengine;
  */
 public interface StackFrameEvaluator {
     public StackFrame evaluate(FormStackFrame frame);
+    public StackFrame evaluate(MessageStackFrame frame);
     public StackFrame evaluate(UserInputStackFrame frame);
 }
