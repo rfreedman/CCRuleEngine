@@ -1,1075 +1,1227 @@
 {
     "consents": null,
-    "response": [
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [],
-                        "questionId": 1,
-                        "questionTypeId": 2,
-                        "measureId": 2,
-                        "questionText": "Enter systolic",
-                        "validations": null
+    "response": {
+        "questionSets": [
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [],
+                            "questionId": 1,
+                            "questionTypeId": 2,
+                            "measureId": 2,
+                            "questionText": "Enter systolic",
+                            "validations": null
+                        }
+                    },
+                    {
+                        "question": {
+                            "answers": [],
+                            "questionId": 2,
+                            "questionTypeId": 2,
+                            "measureId": 3,
+                            "questionText": "Enter diastolic",
+                            "validations": null
+                        }
                     }
-                },
-                {
-                    "question": {
-                        "answers": [],
-                        "questionId": 2,
-                        "questionTypeId": 2,
-                        "measureId": 3,
-                        "questionText": "Enter diastolic",
-                        "validations": null
+                ],
+                "questionSetId": 1,
+                "actions": [
+                    {
+                        "type": 1,
+                        "ruleSetId": 2
                     }
-                }
-            ],
-            "questionSetId": 1,
-            "actions": [
-                {
-                    "type": 2,
-                    "ruleSetId": 2
-                }
-            ]
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [],
-                        "questionId": 3,
-                        "questionTypeId": 2,
-                        "measureId": 1,
-                        "questionText": "Enter your blood glucose results",
-                        "validations": null
+                ]
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [],
+                            "questionId": 3,
+                            "questionTypeId": 2,
+                            "measureId": 1,
+                            "questionText": "Enter your blood glucose results",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 2,
-            "actions": [
-                {
-                    "type": 2,
-                    "ruleSetId": 1
-                }
-            ]
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [],
-                        "questionId": 4,
-                        "questionTypeId": 2,
-                        "measureId": null,
-                        "questionText": "Enter your pulse results",
-                        "validations": null
+                ],
+                "questionSetId": 2,
+                "actions": [
+                    {
+                        "type": 1,
+                        "ruleSetId": 1
                     }
-                }
-            ],
-            "questionSetId": 3,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [],
-                        "questionId": 5,
-                        "questionTypeId": 2,
-                        "measureId": 4,
-                        "questionText": "Enter your pulse ox results",
-                        "validations": null
+                ]
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [],
+                            "questionId": 4,
+                            "questionTypeId": 2,
+                            "measureId": null,
+                            "questionText": "Enter your pulse results",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 4,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [],
-                        "questionId": 6,
-                        "questionTypeId": 2,
-                        "measureId": null,
-                        "questionText": "Enter your peak flow results",
-                        "validations": null
+                ],
+                "questionSetId": 3,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [],
+                            "questionId": 5,
+                            "questionTypeId": 2,
+                            "measureId": 4,
+                            "questionText": "Enter your pulse ox results",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 5,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [],
-                        "questionId": 7,
-                        "questionTypeId": 2,
-                        "measureId": 5,
-                        "questionText": "Enter your temperature results",
-                        "validations": null
+                ],
+                "questionSetId": 4,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [],
+                            "questionId": 6,
+                            "questionTypeId": 2,
+                            "measureId": null,
+                            "questionText": "Enter your peak flow results",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 6,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [],
-                        "questionId": 8,
-                        "questionTypeId": 2,
-                        "measureId": 6,
-                        "questionText": "Enter your weight results",
-                        "validations": [
-                            {
-                                "type": 1,
-                                "value": 999,
-                                "text": "Sorry, please re-enter your weight. The weight you entered exceeds the maximum height value of 999 pounds."
-                            }
-                        ]
+                ],
+                "questionSetId": 5,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [],
+                            "questionId": 7,
+                            "questionTypeId": 2,
+                            "measureId": 5,
+                            "questionText": "Enter your temperature results",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 7,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 6,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [],
+                            "questionId": 8,
+                            "questionTypeId": 2,
+                            "measureId": 6,
+                            "questionText": "Enter your weight results",
+                            "validations": [
+                                {
+                                    "type": 1,
+                                    "value": 999,
+                                    "text": "Sorry, please re-enter your weight. The weight you entered exceeds the maximum height value of 999 pounds."
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 9,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Did you pick up your medications as directed by your provider?",
-                        "validations": null
+                            ]
+                        }
                     }
-                }
-            ],
-            "questionSetId": 8,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 7,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 10,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Are you able to make your scheduled follow-up appointment with your Primary Care Provider?",
-                        "validations": null
+                            ],
+                            "questionId": 9,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Did you pick up your medications as directed by your provider?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 9,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 8,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 11,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Were you able to schedule your follow-up appointment with your Primary Care Provider?",
-                        "validations": null
+                            ],
+                            "questionId": 10,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Are you able to make your scheduled follow-up appointment with your Primary Care Provider?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 10,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 9,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 12,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Are you able to make your scheduled follow-up appointment with your Heart Care Provider/Specialist?",
-                        "validations": null
+                            ],
+                            "questionId": 11,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Were you able to schedule your follow-up appointment with your Primary Care Provider?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 11,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 10,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 13,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Were you able to schedule your follow-up appointment with your Heart Care Provider/Specialist?",
-                        "validations": null
+                            ],
+                            "questionId": 12,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Are you able to make your scheduled follow-up appointment with your Heart Care Provider/Specialist?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 12,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 11,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 14,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Do you have the medical equipment you need for this week?",
-                        "validations": null
+                            ],
+                            "questionId": 13,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Were you able to schedule your follow-up appointment with your Heart Care Provider/Specialist?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 13,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 1,
-                                    "answerText": "None",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 12,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 2,
-                                    "answerText": "Some",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 3,
-                                    "answerText": "A lot",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 15,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Are you experiencing more difficulty breathing today compared to a normal day?",
-                        "validations": null
+                            ],
+                            "questionId": 14,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Do you have the medical equipment you need for this week?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 14,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 1,
-                                    "answerText": "None",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 13,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 1,
+                                        "answerText": "None",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 2,
+                                        "answerText": "Some",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 3,
+                                        "answerText": "A lot",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 2,
-                                    "answerText": "Some",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 3,
-                                    "answerText": "A lot",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 16,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Are you experiencing increased coughing or shortness of breath?",
-                        "validations": null
+                            ],
+                            "questionId": 15,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Are you experiencing more difficulty breathing today compared to a normal day?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 15,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 1,
-                                    "answerText": "None",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 14,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 1,
+                                        "answerText": "None",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 2,
+                                        "answerText": "Some",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 3,
+                                        "answerText": "A lot",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 2,
-                                    "answerText": "Some",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 3,
-                                    "answerText": "A lot",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 17,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Are you experiencing dizziness today?",
-                        "validations": null
+                            ],
+                            "questionId": 16,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Are you experiencing increased coughing or shortness of breath?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 16,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 15,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 1,
+                                        "answerText": "None",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 2,
+                                        "answerText": "Some",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 3,
+                                        "answerText": "A lot",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 18,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Have you noticed a decrease in your appetite?",
-                        "validations": null
+                            ],
+                            "questionId": 17,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Are you experiencing dizziness today?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 17,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 6,
-                                    "answerText": "No red spots, cuts or blisters",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 16,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 7,
-                                    "answerText": "Some red spots, cuts or blisters",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 8,
-                                    "answerText": "A lot of red spots, cuts or blisters",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 19,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Please examine your feet with your shoes and socks off.",
-                        "validations": null
+                            ],
+                            "questionId": 18,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Have you noticed a decrease in your appetite?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 18,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 9,
-                                    "answerText": "0 to 1 = No Pain",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 17,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 6,
+                                        "answerText": "No red spots, cuts or blisters",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 7,
+                                        "answerText": "Some red spots, cuts or blisters",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 8,
+                                        "answerText": "A lot of red spots, cuts or blisters",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 10,
-                                    "answerText": "2 to 3 = Mild Pain",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 11,
-                                    "answerText": "4 to 6 = Moderate Pain",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 12,
-                                    "answerText": "7 to 9 = Severe Pain",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 13,
-                                    "answerText": "10 = Worst Pain Imaginable",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 20,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Are you experiencing any pain today?",
-                        "validations": null
+                            ],
+                            "questionId": 19,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Please examine your feet with your shoes and socks off.",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 19,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 14,
-                                    "answerText": "Same",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 18,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 9,
+                                        "answerText": "0 to 1 = No Pain",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 10,
+                                        "answerText": "2 to 3 = Mild Pain",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 11,
+                                        "answerText": "4 to 6 = Moderate Pain",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 12,
+                                        "answerText": "7 to 9 = Severe Pain",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 13,
+                                        "answerText": "10 = Worst Pain Imaginable",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 15,
-                                    "answerText": "Better",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 16,
-                                    "answerText": "Worse",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 21,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "How is the movement in your affected extremity today versus yesterday?",
-                        "validations": null
+                            ],
+                            "questionId": 20,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Are you experiencing any pain today?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 20,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 14,
-                                    "answerText": "Same",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 19,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 14,
+                                        "answerText": "Same",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 15,
+                                        "answerText": "Better",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 16,
+                                        "answerText": "Worse",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 15,
-                                    "answerText": "Better",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 16,
-                                    "answerText": "Worse",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 22,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "How does your skin look today?",
-                        "validations": null
+                            ],
+                            "questionId": 21,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "How is the movement in your affected extremity today versus yesterday?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 21,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 20,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 14,
+                                        "answerText": "Same",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 15,
+                                        "answerText": "Better",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 16,
+                                        "answerText": "Worse",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 23,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Are you having difficulty sleeping or do you need extra pillows to sleep comfortably?",
-                        "validations": null
+                            ],
+                            "questionId": 22,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "How does your skin look today?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 22,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 1,
-                                    "answerText": "None",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 21,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 2,
-                                    "answerText": "Some",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 3,
-                                    "answerText": "A lot",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 24,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Do you have swelling more than normal in your arms, abdomen, ankles or legs? ",
-                        "validations": null
+                            ],
+                            "questionId": 23,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Are you having difficulty sleeping or do you need extra pillows to sleep comfortably?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 23,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 22,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 1,
+                                        "answerText": "None",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 2,
+                                        "answerText": "Some",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 3,
+                                        "answerText": "A lot",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 25,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Did you follow your exercise/activity as directed by your provider?",
-                        "validations": null
+                            ],
+                            "questionId": 24,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Do you have swelling more than normal in your arms, abdomen, ankles or legs? ",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 24,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 23,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 26,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Have you lost interest in or pleasure from doing things that you once enjoyed?",
-                        "validations": null
+                            ],
+                            "questionId": 25,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Did you follow your exercise/activity as directed by your provider?",
+                            "validations": null
+                        }
                     }
-                },
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 24,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                            ],
+                            "questionId": 26,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Have you lost interest in or pleasure from doing things that you once enjoyed?",
+                            "validations": null
+                        }
+                    },
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            }
-                        ],
-                        "questionId": 27,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Lately, have you been feeling down, depressed or hopeless most of the day?",
-                        "validations": null
+                            ],
+                            "questionId": 27,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Lately, have you been feeling down, depressed or hopeless most of the day?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 25,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 25,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 28,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Did you follow your diet/nutrition plan as directed by your provider?",
-                        "validations": null
+                            ],
+                            "questionId": 28,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Did you follow your diet/nutrition plan as directed by your provider?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 26,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 17,
-                                    "answerText": "0 to 1 = Really Awful",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 26,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 17,
+                                        "answerText": "0 to 1 = Really Awful",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 18,
+                                        "answerText": "2 to 3 = Awful",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 19,
+                                        "answerText": "4 to 5 = Not So Good",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 20,
+                                        "answerText": "6 to 7 = Good",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 21,
+                                        "answerText": "8 to 9 = Very Good",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 18,
-                                    "answerText": "2 to 3 = Awful",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 19,
-                                    "answerText": "4 to 5 = Not So Good",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 20,
-                                    "answerText": "6 to 7 = Good",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 21,
-                                    "answerText": "8 to 9 = Very Good",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 29,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "How are you feeling overall today?",
-                        "validations": null
+                            ],
+                            "questionId": 29,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "How are you feeling overall today?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 27,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 27,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 30,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Did you get your rest as directed by your provider?",
-                        "validations": null
+                            ],
+                            "questionId": 30,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Did you get your rest as directed by your provider?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 28,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 23,
-                                    "answerText": "Not at All",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 28,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 23,
+                                        "answerText": "Not at All",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 14,
+                                        "answerText": "Same",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 24,
+                                        "answerText": "Stopped",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 14,
-                                    "answerText": "Same",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 24,
-                                    "answerText": "Stopped",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 31,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Have you decreased your cigarette usage this week? Only if patient is smoker.",
-                        "validations": null
+                            ],
+                            "questionId": 31,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Have you decreased your cigarette usage this week? Only if patient is smoker.",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 29,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 29,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 32,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Are you current with your immunizations, especially flu and pneumonia immunizations as directed?",
-                        "validations": null
+                            ],
+                            "questionId": 32,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Are you current with your immunizations, especially flu and pneumonia immunizations as directed?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 30,
-            "actions": []
-        },
-        {
-            "questions": [
-                {
-                    "question": {
-                        "answers": [
-                            {
-                                "answer": {
-                                    "answerId": 4,
-                                    "answerText": "Yes",
-                                    "defaultInd": false,
-                                    "actionsXml": null
+                ],
+                "questionSetId": 30,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
                                 }
-                            },
-                            {
-                                "answer": {
-                                    "answerId": 5,
-                                    "answerText": "No",
-                                    "defaultInd": false,
-                                    "actionsXml": null
-                                }
-                            }
-                        ],
-                        "questionId": 33,
-                        "questionTypeId": 4,
-                        "measureId": null,
-                        "questionText": "Did you remember to see your eye care provider once a year?",
-                        "validations": null
+                            ],
+                            "questionId": 33,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Did you remember to see your eye care provider once a year?",
+                            "validations": null
+                        }
                     }
-                }
-            ],
-            "questionSetId": 31,
-            "actions": []
-        }
-    ],
+                ],
+                "questionSetId": 31,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 25,
+                                        "answerText": "None (0 to 1)",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 26,
+                                        "answerText": "Some (2 to 3)",
+                                        "defaultInd": false,
+                                        "actions": [
+                                            {
+                                                "type": 0,
+                                                "questionSetId": 33
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 27,
+                                        "answerText": "A lot (4 to 5)",
+                                        "defaultInd": false,
+                                        "actions": [
+                                            {
+                                                "type": 0,
+                                                "questionSetId": 33
+                                            }
+                                        ]
+                                    }
+                                }
+                            ],
+                            "questionId": 34,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Over the past month how often have asthma symptoms (wheezing, coughing, shortness of breath) interfered with your ability to sleep?",
+                            "validations": null
+                        }
+                    }
+                ],
+                "questionSetId": 32,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                }
+                            ],
+                            "questionId": 35,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Have you taken the necessary precautions to avoid allergy triggers (dust proofing your home, and avoiding smoke, pollen, etc)?",
+                            "validations": null
+                        }
+                    }
+                ],
+                "questionSetId": 33,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                }
+                            ],
+                            "questionId": 36,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Have you reviewed your asthma action plan instructions recently?  Your action plan should be updated at visits with your healthcare provider.",
+                            "validations": null
+                        }
+                    }
+                ],
+                "questionSetId": 34,
+                "actions": []
+            },
+            {
+                "questions": [
+                    {
+                        "question": {
+                            "answers": [
+                                {
+                                    "answer": {
+                                        "answerId": 4,
+                                        "answerText": "Yes",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                },
+                                {
+                                    "answer": {
+                                        "answerId": 5,
+                                        "answerText": "No",
+                                        "defaultInd": false,
+                                        "actions": []
+                                    }
+                                }
+                            ],
+                            "questionId": 37,
+                            "questionTypeId": 4,
+                            "measureId": null,
+                            "questionText": "Did you remember to utilize stress avoidance techniques like deep breathing to help avoid flare-ups?",
+                            "validations": null
+                        }
+                    }
+                ],
+                "questionSetId": 35,
+                "actions": []
+            }
+        ]
+    },
     "updates": null
 }

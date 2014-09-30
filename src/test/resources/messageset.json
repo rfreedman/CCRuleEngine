@@ -5,52 +5,182 @@
             {
                 "messageSetId": 1,
                 "comment": "Blood Glucose - Normal Range",
-                "button": [{"buttonId": 1, "text": "OK"}],
+                "title": null,
+                "button": [
+                    {
+                        "buttonId": 1,
+                        "text": "OK"
+                    }
+                ],
                 "message": [
-                    {"messageId": 1, "text": "Great Job! Keep up the good work!", "tipSetId": 1},
-                    {"messageId": 2, "text": "Wonderful! Thanks for making your health a priority.", "tipSetId": 1},
-                    {"messageId": 3, "text": "Outstanding! Keep doing what you are doing.", "tipSetId": 1},
-                    {"messageId": 4, "text": "Superb! Keep up the great work!", "tipSetId": 1},
-                    {"messageId": 5, "text": "Awesome! You are doing great.", "tipSetId": 1},
-                    {"messageId": 6, "text": "Excellent!  Have a wonderful day!", "tipSetId": 1},
-                    {"messageId": 7, "text": "Excellent! You are a superstar!", "tipSetId": 1},
-                    {"messageId": 8, "text": "Brilliant!  You are right on track!", "tipSetId": 1},
-                    {"messageId": 9, "text": "First-Rate! You are doing an excellent job!", "tipSetId": 1},
-                    {"messageId": 10, "text": "Tremendous! This is how you stay healthy!", "tipSetId": 1},
-                    {"messageId": 11, "text": "Awesome! You are doing great!", "tipSetId": 1}
+                    {
+                        "messageId": 1,
+                        "text": "Great Job! Keep up the good work!",
+                        "color": "green",
+                        "tipSetId": 1
+                    },
+                    {
+                        "messageId": 2,
+                        "text": "Wonderful! Thanks for making your health a priority.",
+                        "color": "green",
+                        "tipSetId": 1
+                    },
+                    {
+                        "messageId": 3,
+                        "text": "Outstanding! Keep doing what you are doing.",
+                        "color": "green",
+                        "tipSetId": 1
+                    },
+                    {
+                        "messageId": 4,
+                        "text": "Superb! Keep up the great work!",
+                        "color": "green",
+                        "tipSetId": 1
+                    },
+                    {
+                        "messageId": 5,
+                        "text": "Awesome! You are doing great.",
+                        "color": "green",
+                        "tipSetId": 1
+                    },
+                    {
+                        "messageId": 6,
+                        "text": "Excellent!  Have a wonderful day!",
+                        "color": "green",
+                        "tipSetId": 1
+                    },
+                    {
+                        "messageId": 7,
+                        "text": "Excellent! You are a superstar!",
+                        "color": "green",
+                        "tipSetId": 1
+                    },
+                    {
+                        "messageId": 8,
+                        "text": "Brilliant!  You are right on track!",
+                        "color": "green",
+                        "tipSetId": 1
+                    },
+                    {
+                        "messageId": 9,
+                        "text": "First-Rate! You are doing an excellent job!",
+                        "color": "green",
+                        "tipSetId": 1
+                    },
+                    {
+                        "messageId": 10,
+                        "text": "Tremendous! This is how you stay healthy!",
+                        "color": "green",
+                        "tipSetId": 1
+                    },
+                    {
+                        "messageId": 11,
+                        "text": "Awesome! You are doing great!",
+                        "color": "green",
+                        "tipSetId": 1
+                    }
                 ]
             },
             {
                 "messageSetId": 2,
                 "comment": "Blood Glucose - Caution Range",
-                "button": [{"buttonId": 1, "text": "OK"}],
+                "title": null,
+                "button": [
+                    {
+                        "buttonId": 1,
+                        "text": "OK"
+                    }
+                ],
                 "message": [
-                    {"messageId": 12, "text": "Did you forget to exercise?", "tipSetId": 2},
-                    {"messageId": 13, "text": "Are you feeling sick or stressed?", "tipSetId": 3},
-                    {"messageId": 14, "text": "Are you watching your diet?", "tipSetId": 4},
-                    {"messageId": 15, "text": "You have room to improve!", "tipSetId": 5},
-                    {"messageId": 16, "text": "Almost there.  Keep working!", "tipSetId": 5},
-                    {"messageId": 17, "text": "Stay focused.", "tipSetId": 5},
-                    {"messageId": 18, "text": "Keep trying and don’t give up. You can do it!", "tipSetId": 5},
-                    {"messageId": 19, "text": "You're almost there.", "tipSetId": 5},
-                    {"messageId": 20, "text": "Room to improve!", "tipSetId": 5},
-                    {"messageId": 21, "text": "Focus. You can do it!", "tipSetId": 5},
-                    {"messageId": 22, "text": "Pay attention to your health!", "tipSetId": 5}
+                    {
+                        "messageId": 12,
+                        "text": "Did you forget to exercise?",
+                        "color": "yellow",
+                        "tipSetId": 2
+                    },
+                    {
+                        "messageId": 13,
+                        "text": "Are you feeling sick or stressed?",
+                        "color": "yellow",
+                        "tipSetId": 3
+                    },
+                    {
+                        "messageId": 14,
+                        "text": "Are you watching your diet?",
+                        "color": "yellow",
+                        "tipSetId": 4
+                    },
+                    {
+                        "messageId": 15,
+                        "text": "You have room to improve!",
+                        "color": "yellow",
+                        "tipSetId": 5
+                    },
+                    {
+                        "messageId": 16,
+                        "text": "Almost there.  Keep working!",
+                        "color": "yellow",
+                        "tipSetId": 5
+                    },
+                    {
+                        "messageId": 17,
+                        "text": "Stay focused.",
+                        "color": "yellow",
+                        "tipSetId": 5
+                    },
+                    {
+                        "messageId": 18,
+                        "text": "Keep trying and don’t give up. You can do it!",
+                        "color": "yellow",
+                        "tipSetId": 5
+                    },
+                    {
+                        "messageId": 19,
+                        "text": "You're almost there.",
+                        "color": "yellow",
+                        "tipSetId": 5
+                    },
+                    {
+                        "messageId": 20,
+                        "text": "Room to improve!",
+                        "color": "yellow",
+                        "tipSetId": 5
+                    },
+                    {
+                        "messageId": 21,
+                        "text": "Focus. You can do it!",
+                        "color": "yellow",
+                        "tipSetId": 5
+                    },
+                    {
+                        "messageId": 22,
+                        "text": "Pay attention to your health!",
+                        "color": "yellow",
+                        "tipSetId": 5
+                    }
                 ]
             },
             {
                 "messageSetId": 3,
                 "comment": "Blood Glucose - Alert Range",
-                "button": [{"buttonId": 1, "text": "OK"}],
+                "title": null,
+                "button": [
+                    {
+                        "buttonId": 1,
+                        "text": "OK"
+                    }
+                ],
                 "message": [
                     {
                         "messageId": 23,
                         "text": "We care about you. Please call your healthcare provider TODAY to discuss your high blood sugar reading.  We recommend that you avoid driving a car or operating heavy machinery until your blood sugar levels are more controlled.",
+                        "color": "red",
                         "tipSetId": null
                     },
                     {
                         "messageId": 24,
                         "text": "Your blood sugar reading is low. If you are having symptoms, please treat your low blood sugar IMMEDIATELY and/or contact your healthcare provider.  We recommend that you avoid driving a car or operating heavy machinery until your blood sugar levels are more controlled.",
+                        "color": "red",
                         "tipSetId": null
                     }
                 ]
@@ -58,11 +188,18 @@
             {
                 "messageSetId": 4,
                 "comment": "Blood Pressure - Normal Range",
-                "button": [{"buttonId": 1, "text": "OK"}],
+                "title": null,
+                "button": [
+                    {
+                        "buttonId": 1,
+                        "text": "OK"
+                    }
+                ],
                 "message": [
                     {
                         "messageId": 25,
                         "text": "Your blood pressure is in a stable range today.  Please continue to check your blood pressure routinely.",
+                        "color": "green",
                         "tipSetId": null
                     }
                 ]
@@ -70,11 +207,18 @@
             {
                 "messageSetId": 5,
                 "comment": "Blood Pressure - Caution High Range",
-                "button": [{"buttonId": 1, "text": "OK"}],
+                "title": null,
+                "button": [
+                    {
+                        "buttonId": 1,
+                        "text": "OK"
+                    }
+                ],
                 "message": [
                     {
                         "messageId": 26,
                         "text": "Your blood pressure is high today. Please check it again after resting for 5 minutes. If it continues to be high, please contact your healthcare provider TODAY.",
+                        "color": "yellow",
                         "tipSetId": null
                     }
                 ]
@@ -82,11 +226,18 @@
             {
                 "messageSetId": 6,
                 "comment": "Blood Pressure - Alert High Range",
-                "button": [{"buttonId": 1, "text": "OK"}],
+                "title": null,
+                "button": [
+                    {
+                        "buttonId": 1,
+                        "text": "OK"
+                    }
+                ],
                 "message": [
                     {
                         "messageId": 27,
                         "text": "Your blood pressure is extremely high and can be dangerous to your overall health. Please contact your healthcare provider IMMEDIATELY.",
+                        "color": "red",
                         "tipSetId": null
                     }
                 ]
@@ -94,11 +245,18 @@
             {
                 "messageSetId": 7,
                 "comment": "Blood Pressure - Alert Low Range",
-                "button": [{"buttonId": 1, "text": "OK"}],
+                "title": null,
+                "button": [
+                    {
+                        "buttonId": 1,
+                        "text": "OK"
+                    }
+                ],
                 "message": [
                     {
                         "messageId": 28,
                         "text": "Your blood pressure is slightly low today and may be normal for you.  However, if you are experiencing any symptoms of low blood pressure like lightheadedness or dizziness, you may want to contact your provider.",
+                        "color": "red",
                         "tipSetId": null
                     }
                 ]

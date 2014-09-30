@@ -1,7 +1,7 @@
 {
     "consents": null,
     "response": {
-        "resultSets": [
+        "ruleSets": [
             {
                 "ruleSetId": 1,
                 "comment": "Blood Glucose",
@@ -13,7 +13,16 @@
                         "questionId": 3,
                         "start": "chart.measureDefinitions.[measureId=1].ranges.[name='green'].startValue",
                         "end": "chart.measureDefinitions.[measureId=1].ranges.[name='green'].endValue",
-                        "action": {"type": 1, "messageSetId": 1}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 1
+                            },
+                            {
+                                "type": 2,
+                                "messageSetId": 999
+                            }
+                        ]
                     },
                     {
                         "ruleId": 2,
@@ -22,7 +31,12 @@
                         "questionId": 3,
                         "start": "chart.measureDefinitions.[measureId=1].ranges.[name='yellowlow'].startValue",
                         "end": "chart.measureDefinitions.[measureId=1].ranges.[name='yellowlow'].endValue",
-                        "action": {"type": 1, "messageSetId": 2}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 2
+                            }
+                        ]
                     },
                     {
                         "ruleId": 3,
@@ -31,7 +45,12 @@
                         "questionId": 3,
                         "start": "chart.measureDefinitions.[measureId=1].ranges.[name='yellowhigh'].startValue",
                         "end": "chart.measureDefinitions.[measureId=1].ranges.[name='yellowhigh'].endValue",
-                        "action": {"type": 1, "messageSetId": 2}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 2
+                            }
+                        ]
                     },
                     {
                         "ruleId": 4,
@@ -40,7 +59,12 @@
                         "questionId": 3,
                         "start": "chart.measureDefinitions.[measureId=1].ranges.[name='redlow'].startValue",
                         "end": "chart.measureDefinitions.[measureId=1].ranges.[name='redlow'].endValue",
-                        "action": {"type": 1, "messageSetId": 3}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 3
+                            }
+                        ]
                     },
                     {
                         "ruleId": 5,
@@ -49,7 +73,12 @@
                         "questionId": 3,
                         "start": "chart.measureDefinitions.[measureId=1].ranges.[name='redhigh'].startValue",
                         "end": "chart.measureDefinitions.[measureId=1].ranges.[name='redhigh'].endValue",
-                        "action": {"type": 1, "messageSetId": 3}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 3
+                            }
+                        ]
                     }
                 ]
             },
@@ -64,7 +93,12 @@
                         "questionId": 1,
                         "start": "chart.measureDefinitions.[measureId=2].ranges.[name='green'].startValue",
                         "end": "chart.measureDefinitions.[measureId=2].ranges.[name='green'].endValue",
-                        "action": {"type": 1, "messageSetId": 4}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 4
+                            }
+                        ]
                     },
                     {
                         "ruleId": 7,
@@ -73,7 +107,12 @@
                         "questionId": 1,
                         "start": "chart.measureDefinitions.[measureId=2].ranges.[name='yellowlow'].startValue",
                         "end": "chart.measureDefinitions.[measureId=2].ranges.[name='yellowlow'].endValue",
-                        "action": {"type": 1, "messageSetId": 5}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 5
+                            }
+                        ]
                     },
                     {
                         "ruleId": 8,
@@ -82,7 +121,12 @@
                         "questionId": 1,
                         "start": "chart.measureDefinitions.[measureId=2].ranges.[name='yellowhigh'].startValue",
                         "end": "chart.measureDefinitions.[measureId=2].ranges.[name='yellowhigh'].endValue",
-                        "action": {"type": 1, "messageSetId": 5}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 5
+                            }
+                        ]
                     },
                     {
                         "ruleId": 9,
@@ -91,7 +135,12 @@
                         "questionId": 1,
                         "start": "chart.measureDefinitions.[measureId=2].ranges.[name='redlow'].startValue",
                         "end": "chart.measureDefinitions.[measureId=2].ranges.[name='redlow'].endValue",
-                        "action": {"type": 1, "messageSetId": 7}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 7
+                            }
+                        ]
                     },
                     {
                         "ruleId": 10,
@@ -100,7 +149,12 @@
                         "questionId": 1,
                         "start": "chart.measureDefinitions.[measureId=2].ranges.[name='redhigh'].startValue",
                         "end": "chart.measureDefinitions.[measureId=2].ranges.[name='redhigh'].endValue",
-                        "action": {"type": 1, "messageSetId": 6}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 6
+                            }
+                        ]
                     },
                     {
                         "ruleId": 11,
@@ -109,7 +163,12 @@
                         "questionId": 1,
                         "start": "chart.measureDefinitions.[measureId=2].ranges.[name='green'].startValue",
                         "end": "chart.measureDefinitions.[measureId=2].ranges.[name='green'].endValue",
-                        "action": {"type": 1, "messageSetId": 4}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 4
+                            }
+                        ]
                     },
                     {
                         "ruleId": 12,
@@ -118,7 +177,12 @@
                         "questionId": 1,
                         "start": "chart.measureDefinitions.[measureId=2].ranges.[name='yellowlow'].startValue",
                         "end": "chart.measureDefinitions.[measureId=2].ranges.[name='yellowlow'].endValue",
-                        "action": {"type": 1, "messageSetId": 5}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 5
+                            }
+                        ]
                     },
                     {
                         "ruleId": 13,
@@ -127,7 +191,12 @@
                         "questionId": 1,
                         "start": "chart.measureDefinitions.[measureId=2].ranges.[name='yellowhigh'].startValue",
                         "end": "chart.measureDefinitions.[measureId=2].ranges.[name='yellowhigh'].endValue",
-                        "action": {"type": 1, "messageSetId": 5}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 5
+                            }
+                        ]
                     },
                     {
                         "ruleId": 14,
@@ -136,7 +205,12 @@
                         "questionId": 1,
                         "start": "chart.measureDefinitions.[measureId=2].ranges.[name='redlow'].startValue",
                         "end": "chart.measureDefinitions.[measureId=2].ranges.[name='redlow'].endValue",
-                        "action": {"type": 1, "messageSetId": 7}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 7
+                            }
+                        ]
                     },
                     {
                         "ruleId": 15,
@@ -145,7 +219,12 @@
                         "questionId": 1,
                         "start": "chart.measureDefinitions.[measureId=2].ranges.[name='redhigh'].startValue",
                         "end": "chart.measureDefinitions.[measureId=2].ranges.[name='redhigh'].endValue",
-                        "action": {"type": 1, "messageSetId": 6}
+                        "actions": [
+                            {
+                                "type": 2,
+                                "messageSetId": 6
+                            }
+                        ]
                     }
                 ]
             }

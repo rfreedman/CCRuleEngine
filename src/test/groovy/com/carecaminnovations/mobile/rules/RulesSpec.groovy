@@ -17,7 +17,7 @@ class RulesSpec extends Specification {
         String activitiesJson = IOUtils.toString(getClass().getResourceAsStream("/activities.json"), "UTF-8");
         String formsJson = IOUtils.toString(getClass().getResourceAsStream("/form.json"), "UTF-8");
         String questionSetsJson = IOUtils.toString(getClass().getResourceAsStream("/questionset.json"), "UTF-8");
-        String ruleSetJson     = IOUtils.toString(getClass().getResourceAsStream("/ruleset-prioritized.json"), "UTF-8");
+        String ruleSetJson     = IOUtils.toString(getClass().getResourceAsStream("/rulesets.json"), "UTF-8");
         String chartJson       = IOUtils.toString(getClass().getResourceAsStream("/chart.json"), "UTF-8");
         String messagesSetJson = IOUtils.toString(getClass().getResourceAsStream("/messageset.json"), "UTF-8");
         String tipSetsJson     = IOUtils.toString(getClass().getResourceAsStream("/tipset.json"), "UTF-8");
@@ -48,37 +48,23 @@ class RulesSpec extends Specification {
         expect:
         evaluationResult != null
         evaluationResult != EvaluationResult.EMPTY;
-        evaluationResult.action != null
-        evaluationResult.action.type == actionType
-        evaluationResult.action.messageSetId == actionMessageSetId
-        evaluationResult.message != null
-        evaluationResult.message.messageId > 0
-        evaluationResult.message.text.isEmpty() == false
-        if(evaluationResult.message.tipSetId > 0) {
-            evaluationResult.tip != null
-            evaluationResult.tip.tipId > 0
-            evaluationResult.tip.text.isEmpty() == false
-        }
-        evaluationResult.buttons != null
-        evaluationResult.buttons.size() > 0
-        for(Button button : evaluationResult.buttons) {
-            button.buttonId > 0;
-            button.text.isEmpty() == false
-        }
+        evaluationResult.actions != null
+        evaluationResult.actions.get(0).type == actionType
+        evaluationResult.actions.get(0).messageSetId == actionMessageSetId
 
         where:
         rulesetId | firstQuestionNumber | firstAnswer | secondQuestionNumber | secondAnswer | actionType | actionMessageSetId | comment
-        2         | 1                   | 120         | 2                    | 81           | 1          | 4                  | 'bp systolic normal'
-        2         | 1                   | 120         | 2                    | 125          | 1          | 6                  | 'bp diastolic alert high'
-        1         | 3                   |  80         | null                 | null         | 1          | 1                  | 'blood glucose normal'
-        1         | 3                   |  20         | null                 | null         | 1          | 3                  | 'blood glucose low'
-        1         | 3                   | 400         | null                 | null         | 1          | 2                  | 'blood glucose high'
-        2         | 1                   | 120         | null                 | null         | 1          | 4                  | 'bp systolic normal'
-        2         | 1                   | 139         | null                 | null         | 1          | 5                  | 'bp systolic high'
-        2         | 1                   | 139.00      | null                 | null         | 1          | 5                  | 'bp systolic high'
-        2         | 1                   | 118         | null                 | null         | 1          | 5                  | 'bp systolic low'
-        2         | 1                   | 139.01      | null                 | null         | 1          | 5                  | 'bp systolic high'
-        2         | 1                   | 140         | null                 | null         | 1          | 5                  | 'bp systolic high'
-        2         | 1                   |  50         | null                 | null         | 1          | 7                  | 'bp systolic very low'
+        2         | 1                   | 120         | 2                    | 81           | 2          | 4                  | 'bp systolic normal'
+        2         | 1                   | 120         | 2                    | 130          | 2          | 6                  | 'bp diastolic alert high'
+        1         | 3                   |  80         | null                 | null         | 2          | 1                  | 'blood glucose normal'
+        1         | 3                   |  20         | null                 | null         | 2          | 3                  | 'blood glucose low'
+        1         | 3                   | 400         | null                 | null         | 2          | 2                  | 'blood glucose high'
+        2         | 1                   | 120         | null                 | null         | 2          | 4                  | 'bp systolic normal'
+        2         | 1                   | 139         | null                 | null         | 2          | 5                  | 'bp systolic high'
+        2         | 1                   | 139.00      | null                 | null         | 2          | 5                  | 'bp systolic high'
+        2         | 1                   | 118         | null                 | null         | 2          | 5                  | 'bp systolic low'
+        2         | 1                   | 139.01      | null                 | null         | 2          | 5                  | 'bp systolic high'
+        2         | 1                   | 140         | null                 | null         | 2          | 5                  | 'bp systolic high'
+        2         | 1                   |  50         | null                 | null         | 2          | 7                  | 'bp systolic very low'
     }
 }

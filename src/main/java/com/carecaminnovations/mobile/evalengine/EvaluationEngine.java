@@ -6,11 +6,6 @@ package com.carecaminnovations.mobile.evalengine;
 Activity -> Multiple Steps, each step has at most one form
 Form -> array of actions to be processed sequentially (go all the way down the tree and back for the first one, then process the second, etc.)
 
-3 types of action
- - display questionset = 0
- - display messageset = 1
- - run a ruleset = 2
-
 
  * questionset - set of questions
  * questions have answers
@@ -50,6 +45,7 @@ Form -> array of actions to be processed sequentially (go all the way down the t
 
 import com.carecaminnovations.mobile.json.JsonRepository;
 import com.carecaminnovations.mobile.model.Action;
+import com.carecaminnovations.mobile.model.ResultSet;
 import com.carecaminnovations.mobile.model.Results;
 import com.carecaminnovations.mobile.rules.EvaluationResult;
 import com.carecaminnovations.mobile.rules.RulesEngine;
@@ -59,34 +55,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Map;
 
 import static com.carecaminnovations.mobile.evalengine.EvalStack.EMPTY_STACK_FRAME;
+import static com.carecaminnovations.mobile.model.Action.ActionType;
 
 public class EvaluationEngine implements StackFrameEvaluator {
 
     private static final Logger logger = LoggerFactory.getLogger(EvaluationEngine.class);
-
-    private enum ActionType {
-        UNKNOWN(-1), DISPLAY_QUESTION_SET(0), RUN_RULE_SET(2);
-
-        private int code;
-        private ActionType(int code) {
-            this.code = code;
-        }
-
-        public static ActionType fromCode(int code) {
-            ActionType result = UNKNOWN;
-            for(ActionType actionType : ActionType.values()) {
-                if(actionType.code == code) {
-                    result = actionType;
-                    break;
-                }
-            }
-            return result;
-        }
-    }
 
     private EvaluationEngineStateRepository stateRepository;
     private JsonRepository jsonRepository;
@@ -148,8 +124,8 @@ public class EvaluationEngine implements StackFrameEvaluator {
         assert currentFrame != EMPTY_STACK_FRAME;
         assert currentFrame instanceof FormStackFrame; // || currentFrame instanceof MessageStackFrame
 
-        currentFrame.markCurrentActionCompleted();
         currentFrame.setResults(results);
+        currentFrame.markCurrentActionCompleted();
 
         assert currentFrame instanceof FormStackFrame;
         populateStackFrameQuestionSetActions((FormStackFrame) currentFrame);
@@ -200,6 +176,21 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
     public StackFrame evaluate(UserInputStackFrame frame) {
         return EMPTY_STACK_FRAME;
+    }
+
+    public StackFrame evaluate(RuleActionsStackFrame frame) {
+        logger.debug("evaluating RuleActionsStackFrame....");
+        StackFrame resultStackFrame = EMPTY_STACK_FRAME;
+
+        Action currentAction = frame.getFirstUncompletedAction();
+        if(currentAction != null) {
+            logger.debug("evaluate - action is: " + currentAction);
+            resultStackFrame = performAction(currentAction);
+        }
+
+        logger.debug("evaluate - result of action: " + currentAction + " is: " + resultStackFrame);
+
+        return resultStackFrame;
     }
 
     private String getStackReport() {
@@ -318,21 +309,26 @@ public class EvaluationEngine implements StackFrameEvaluator {
         logger.debug("before performing action: " + action + ", " + getStackReport());
 
         final int actionTypeCode = action.getType();
-        final ActionType actionType = ActionType.fromCode(actionTypeCode);
+        final ActionType actionType = ActionType.fromTypeCode(actionTypeCode);
         switch(actionType) {
             case DISPLAY_QUESTION_SET:
                 resultStackFrame = displayQuestionSet(action.getQuestionSetId());
                 // this type of action is completed when the answers are applied
                 break;
 
-            case RUN_RULE_SET:
+            case DISPLAY_MESSAGE_SET:
+                resultStackFrame = displayMessageSet(action.getMessageSetId());
+                // this type of action is completed when the answers are applied
+                break;
+
+            case EVALUATE_RULE_SET:
                 try {
                     resultStackFrame = evaluateRules(action);
-                    markCurrentActionCompleted();
                 } catch(Exception ex) {
                     logger.error("rule eval threw exception:", ex);
-                    markCurrentActionCompleted();
                 }
+                markCurrentActionCompleted();
+
                 break;
 
             default:
@@ -369,16 +365,65 @@ public class EvaluationEngine implements StackFrameEvaluator {
         return new QuestionSetUserInputStackFrame(questionSetId);
     }
 
+
+    private StackFrame displayMessageSet(int messageSetId) {
+        logger.debug("displaying messageSet: " + messageSetId);
+
+
+        // populate the current stack frame with messageSet actions, if any
+        StackFrame currentFrame = peekStack();
+        assert currentFrame instanceof FormStackFrame;
+
+        ((FormStackFrame) currentFrame).setQuestionSetId(questionSetId);
+
+        state.setShouldRun(false);
+
+        // we directly modified a frame on the stack
+        // instead of going through wrapper methods,
+        // so we need to save the new state
+        persistState();
+
+
+        return new QuestionSetUserInputStackFrame(questionSetId);
+    }
+
+    private Map<Integer, ResultSet> getPreviousAnswers() {
+        Map<Integer, ResultSet> previousAnswers = new HashMap<Integer, ResultSet>();
+
+        Results lastResults = state.getLastResults();
+
+        for(ResultSet resultSet : lastResults.getResults()) {
+            previousAnswers.put(resultSet.getQuestionId(), resultSet);
+        }
+
+        return previousAnswers;
+    }
+
     private StackFrame evaluateRules(Action action) throws Exception {
         StackFrame resultFrame = EMPTY_STACK_FRAME; // default
 
         Integer ruleSetId = action.getRuleSetId();
 
-        Map<Integer, Number> previousAnswers = null; // todo - how do we get this?
+        Map<Integer, ResultSet> previousResultSet = getPreviousAnswers();
 
-        // fake the input
-        previousAnswers = new HashMap<Integer, Number>();
-        previousAnswers.put(3, 80); // blood glucose normal
+        // map the previousResultSet to previousAnswers - this is what will be sent to the rule engine
+        Map<Integer, Number> previousAnswers = new HashMap<Integer, Number>();
+        for(Map.Entry<Integer, ResultSet> entry : previousResultSet.entrySet()) {
+
+            Number value = null;
+            if(entry.getValue().getAnswerId() > 0) {
+                value = entry.getValue().getAnswerId(); // mutiple choice - radio button, checkbox, etc.
+            } else if(entry.getValue().getAnswerText() != null) {
+
+                try {
+                    value = Double.parseDouble(entry.getValue().getAnswerText());
+                } catch (NumberFormatException ex) {
+                    logger.error("EvaluationEngine.evaluateRules - failed to format answerText: " + entry.getValue().getAnswerText() + " as a Double for input into the rule");
+                }
+            }
+
+            previousAnswers.put(entry.getKey(), value);
+        }
 
         logger.debug("evaluating ruleSet " + ruleSetId);
 
@@ -386,29 +431,15 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
         logger.debug("result of evaluating ruleSet " + ruleSetId + ": " + evaluationResult);
 
-        // TODO - TODO - we should just be calling performAction here - the message, tip, and buttons should be bundled in the action - might need multiple Action subclasses?
-        // TODO - differentiate result types - at the moment, we only support 'no result' or 'display a message set'
+        // an evaluation result is now a list of actions
         if(evaluationResult != EvaluationResult.EMPTY) {
-            switch(evaluationResult.action.getType()) {
-                case 1: // display a message set
-                    logger.debug("(NOT YET) creating message set stack frame for rule evaluation result");
-                    // TODO - create a 'MessageSet' Stack Frame
-                    /*
-                    EvaluationResult{
-                        action = Action{ type=1, questionSetId=0, messageSetId=1, ruleSetId=0 },
-                        message = com.carecaminnovations.mobile.model.Message@63ce15f6,
-                        tip=com.carecaminnovations.mobile.model.Tip@6f03fcaa,
-                        buttons=[com.carecaminnovations.mobile.model.Button@6ec135d6]
-                    }
-                    */
-                    logger.debug("would create message set stack frame with message: " + evaluationResult.message.getText() + ", tip: " + evaluationResult.tip.getText() + ", First button: " + evaluationResult.buttons.get(0).getText());
+            //logger.debug("(NOT YET) creating  rule evaluation results / actions stack frame for rule evaluation result: " + evaluationResult);
 
-
-                    break;
-
-                default: // unhandled
-                    throw new UnsupportedOperationException("ruleSet Action Type: " + evaluationResult.action.getType() + " not implemented");
-            }
+            RuleActionsStackFrame stackFrame = new RuleActionsStackFrame();
+            Action[] actions = new Action[evaluationResult.actions.size()];
+            actions = evaluationResult.actions.toArray(actions);
+            stackFrame.setRuleActions(evaluationResult.actions.toArray(actions));
+            resultFrame = stackFrame;
         }
 
         return resultFrame;

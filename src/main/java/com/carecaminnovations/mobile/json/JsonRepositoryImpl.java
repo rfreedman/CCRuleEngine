@@ -69,7 +69,6 @@ public class JsonRepositoryImpl implements JsonRepository {
     public JSONObject lookupActivity(final int activityId) {
         final String activitiesJson = jsonDocs.get(JSONDocType.ACTIVITIES.getAlias());
 
-        // JSONArray activities =  JsonPath.read(activitiesJson, "$..response[?(@.activityId == " + activityId + ")]");
         JSONArray activities =  JsonPath.read(activitiesJson, "$..[?(@.activityId == " + activityId + " && @.activityType > 0)]");
 
         return (activities == null || activities.size() == 0) ? null : (JSONObject) activities.get(0);
@@ -78,7 +77,6 @@ public class JsonRepositoryImpl implements JsonRepository {
     public JSONObject lookupForm(final int formId) {
         final String formsJson = jsonDocs.get(JSONDocType.FORMS.getAlias());
 
-        //JSONArray forms = JsonPath.read(formsJson, "$..response[?(@.formId == " + formId + ")]");
         JSONArray forms = JsonPath.read(formsJson, "$..[?(@.formId == " + formId + ")]");
 
         return (forms == null || forms.size() == 0) ? null : (JSONObject) forms.get(0);
@@ -90,7 +88,6 @@ public class JsonRepositoryImpl implements JsonRepository {
     @Override
     public JSONArray lookupRuleSet(final int ruleSetId) {
         final String ruleSetsJson = jsonDocs.get(JSONDocType.RULESETS.getAlias());
-        //return JsonPath.read(ruleSetsJson, "$..resultSets[?(@.ruleSetId == " + ruleSetId + ")]");
         return JsonPath.read(ruleSetsJson, "$..[?(@.ruleSetId == " + ruleSetId + ")]");
     }
 
@@ -100,10 +97,7 @@ public class JsonRepositoryImpl implements JsonRepository {
     @Override
     public JSONObject lookupQuestionSet(final int questionSetId) {
         final String questionSetsJson = jsonDocs.get(JSONDocType.QUESTIONSETS.getAlias());
-
-        //JSONArray questionSets =  JsonPath.read(questionSetsJson, "$..response[?(@.questionSetId == " + questionSetId + ")]");
         JSONArray questionSets =  JsonPath.read(questionSetsJson, "$..[?(@.questionSetId == " + questionSetId + ")]");
-
         return (questionSets == null || questionSets.size() == 0) ? null : (JSONObject) questionSets.get(0);
     }
 
@@ -114,8 +108,6 @@ public class JsonRepositoryImpl implements JsonRepository {
     @Override
     public JSONObject lookupMessageSet(final int messageSetId) {
         final String messageSetsJson = jsonDocs.get(JSONDocType.MESSAGESETS.getAlias());
-
-        //return JsonPath.read(messageSetsJson, "$..messageSets[?(@.messageSetId == " + messageSetId + ")][0]");
         return JsonPath.read(messageSetsJson, "$..[?(@.messageSetId == " + messageSetId + ")][0]");
     }
 
@@ -167,22 +159,50 @@ public class JsonRepositoryImpl implements JsonRepository {
 
         if(rule != null) {
 
-            final JSONObject jsonAction = (JSONObject) rule.get("action");
-            final Action action = new Action();
-            action.setType((Integer) jsonAction.get("type"));
-            action.setMessageSetId((Integer) jsonAction.get("messageSetId"));
-
-
-            final JSONObject jsonMessageSet = lookupMessageSet(action.getMessageSetId());
-            final Message message = createMessage(jsonMessageSet);
-            final Tip tip = createTip(message.getTipSetId());
-            final List<Button> buttons = createButtons(jsonMessageSet);
-
-            result = new  EvaluationResult(action, message, tip, buttons);
-
-            logger.debug("messageSet = " + jsonMessageSet);
+            final JSONArray jsonActions = (JSONArray) rule.get("actions");
+            List<Action> actions = getActions(jsonActions);
+            result = new  EvaluationResult((Integer) rule.get("ruleId"), actions);
         }
 
+        return result;
+    }
+
+
+    // TODO - when integrating into android app, use existing method in 'Network.java'
+    private List<Action> getActions(JSONArray actionsJsonArray) {
+        List<Action> actions = null;
+
+        try {
+            if (actionsJsonArray != null) {
+                actions = new ArrayList<Action>();
+                for (int i = 0; i < actionsJsonArray.size(); i++) {
+                    JSONObject actionJsonObject = (JSONObject) actionsJsonArray.get(i);
+
+                    Action action = new Action();
+                    action.setType(((Integer) actionJsonObject.get("type")).intValue());
+                    action.setQuestionSetId(getOptionalInteger(actionJsonObject, "questionSetId"));
+                    action.setMessageSetId(getOptionalInteger(actionJsonObject, "messageSetId"));
+                    action.setRuleSetId(getOptionalInteger(actionJsonObject, "ruleSetId"));
+
+                    actions.add(action);
+                }
+            }
+        } catch (Exception ex) {
+            logger.error("JSON - failed to deserialize actions", ex);
+            actions = null;
+        }
+
+        return actions;
+    }
+
+    private Integer getOptionalInteger(JSONObject jsonObject, String key) {
+        Integer result = null;
+        if(jsonObject != null) {
+            Object obj = jsonObject.get(key);
+            if (obj != null) {
+                result = (Integer) obj;
+            }
+        }
         return result;
     }
 

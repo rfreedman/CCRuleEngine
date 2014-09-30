@@ -16,13 +16,13 @@ class EvaluationEngineSpec extends Specification {
     def setup() {
         // these would typically be downloaded by the mobile app via the api
 
-        String activitiesJson = IOUtils.toString(getClass().getResourceAsStream("/activities.json"), "UTF-8")
-        String formsJson = IOUtils.toString(getClass().getResourceAsStream("/form.json"), "UTF-8")
-        String questionSetsJson = IOUtils.toString(getClass().getResourceAsStream("/questionset.json"), "UTF-8")
-        String ruleSetJson     = IOUtils.toString(getClass().getResourceAsStream("/ruleset-prioritized.json"), "UTF-8")
-        String chartJson       = IOUtils.toString(getClass().getResourceAsStream("/chart.json"), "UTF-8")
-        String messagesSetJson = IOUtils.toString(getClass().getResourceAsStream("/messageset.json"), "UTF-8")
-        String tipSetsJson     = IOUtils.toString(getClass().getResourceAsStream("/tipset.json"), "UTF-8")
+        String activitiesJson   = IOUtils.toString(getClass().getResourceAsStream("/activities.json") as InputStream,  "UTF-8")
+        String formsJson        = IOUtils.toString(getClass().getResourceAsStream("/form.json") as InputStream,        "UTF-8")
+        String questionSetsJson = IOUtils.toString(getClass().getResourceAsStream("/questionset.json") as InputStream, "UTF-8")
+        String ruleSetJson      = IOUtils.toString(getClass().getResourceAsStream("/rulesets.json") as InputStream,    "UTF-8")
+        String chartJson        = IOUtils.toString(getClass().getResourceAsStream("/chart.json") as InputStream,       "UTF-8")
+        String messagesSetJson  = IOUtils.toString(getClass().getResourceAsStream("/messageset.json") as InputStream,  "UTF-8")
+        String tipSetsJson      = IOUtils.toString(getClass().getResourceAsStream("/tipset.json") as InputStream,      "UTF-8")
         JsonRepository jsonRepository = new JsonRepositoryImpl(activitiesJson, formsJson, questionSetsJson, ruleSetJson, chartJson, messagesSetJson, tipSetsJson)
 
         evaluationEngine = new EvaluationEngine()
@@ -48,9 +48,15 @@ class EvaluationEngineSpec extends Specification {
         setup() // again
         evaluationEngine.evaluateForm(activityId, stepId)
 
-        ResultSet resultSet = new ResultSet();
         List<ResultSet> resultSets = new ArrayList<ResultSet>();
+
+        ResultSet resultSet = new ResultSet();
+        resultSet.setStepId(stepId)
+        resultSet.setQuestionId(3);
+        resultSet.setAnswerText("85");
         resultSets.add(resultSet);
+
+
         Results results = new Results();
         results.setResults(resultSets);
 

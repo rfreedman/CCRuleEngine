@@ -60,6 +60,10 @@ public class EvaluationEngineState {
         return allResults;
     }
 
+    public Results getLastResults() {
+        return allResults.get(allResults.size() -1);
+    }
+
     public void addResults(final Results results) {
         allResults.add(results);
     }
