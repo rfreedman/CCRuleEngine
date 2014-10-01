@@ -6,12 +6,21 @@ import com.google.gson.GsonBuilder;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
-public class MessageStackFrame extends StackFrame {
+public class MessageSetStackFrame extends StackFrame {
 
+    private int messageSetId;
     private Action[] messageSetActions;
     private Integer lastCompletedMessageSetActionIndex;
 
-    public MessageStackFrame() {
+    public MessageSetStackFrame() {
+    }
+
+    public int getMessageSetId() {
+        return messageSetId;
+    }
+
+    public void setMessageSetId(int messageSetId) {
+        this.messageSetId = messageSetId;
     }
 
     @Override
@@ -114,5 +123,36 @@ public class MessageStackFrame extends StackFrame {
         } while(false);
 
         return result;
+    }
+
+    @Override
+    public void markCurrentActionCompleted() {
+
+        do {
+            if(hasMoreMessageSetActions()) {
+                markCurrentMessageSetActionComplete();
+                break;
+            }
+
+            // we never have any actions in the base class
+            //super.markCurrentActionCompleted();
+
+        } while(false);
+
+
+    }
+
+    public void markCurrentMessageSetActionComplete() {
+
+        if(allActionsCompleted()) {
+            throw new IllegalStateException("markCurrentMessageSetActionComplete - no 'current' action to complete");
+        }
+
+        if(lastCompletedMessageSetActionIndex == null) {
+            lastCompletedMessageSetActionIndex = new Integer(0);
+        } else {
+            lastCompletedMessageSetActionIndex = new Integer(lastCompletedMessageSetActionIndex.intValue() + 1);
+        }
+
     }
 }

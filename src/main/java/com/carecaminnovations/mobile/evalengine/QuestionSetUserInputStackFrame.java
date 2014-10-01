@@ -16,6 +16,10 @@ public class QuestionSetUserInputStackFrame extends UserInputStackFrame {
         return evaluator.evaluate(this);
     }
 
+    public int getQuestionSetId() {
+        return questionSetId;
+    }
+
     @Override
     public String toString() {
         return "QuestionSetUserInputStackFrame{" +

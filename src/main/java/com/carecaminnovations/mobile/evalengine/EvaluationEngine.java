@@ -89,9 +89,10 @@ public class EvaluationEngine implements StackFrameEvaluator {
     }
 
     /** The root of the evaluation hierarchy - this happens when the user selects a step in an activity.
-     *  Typically, the first evaluation will cause a form or message to be displayed.
+     *  The step has a list of Actions
+     *  Typically, the first action will cause a QuestionSet or a MessageSet to be displayed.
      */
-    public void evaluateForm(final int activityId, final int stepId) {
+    public void evaluateActivityStep(final int activityId, final int stepId) {
 
         // either recover saved state, if any, or build the starting state for the step
         initializeEngine(activityId, stepId);
@@ -104,8 +105,8 @@ public class EvaluationEngine implements StackFrameEvaluator {
      * The entity displaying the form invokes this when the user has supplied input
      * and the input has been validated.
      */
-    public void applyUserInput(Results results) {
-        logger.debug("resuming with user input: " + results + ", " + getStackReport());
+    public void applyQuestionSetUserInput(Results results) {
+        logger.debug("resuming with user input from questionSet: " + results + ", " + getStackReport());
 
         assert state.getShouldRun() == false;
         assert peekStack() instanceof UserInputStackFrame;
@@ -122,14 +123,19 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
         assert currentFrame != null;
         assert currentFrame != EMPTY_STACK_FRAME;
-        assert currentFrame instanceof FormStackFrame; // || currentFrame instanceof MessageStackFrame
+        assert currentFrame instanceof FormStackFrame || currentFrame instanceof QuestionSetStackFrame;
 
         currentFrame.setResults(results);
         currentFrame.markCurrentActionCompleted();
 
-        assert currentFrame instanceof FormStackFrame;
-        populateStackFrameQuestionSetActions((FormStackFrame) currentFrame);
-        populateStackFrameAnswerActions((FormStackFrame) currentFrame);
+        // TODO - fold FormStackFrame and QuestionSetStackFrame together
+        if(currentFrame instanceof FormStackFrame) {
+            populateStackFrameQuestionSetActions((FormStackFrame) currentFrame);
+            populateStackFrameAnswerActions((FormStackFrame) currentFrame);
+        } else {
+            populateStackFrameQuestionSetActions((QuestionSetStackFrame) currentFrame);
+            populateStackFrameAnswerActions((QuestionSetStackFrame) currentFrame);
+        }
 
         // restart evaluation
         state.setShouldRun(true); // allow the engine to continue
@@ -142,6 +148,37 @@ public class EvaluationEngine implements StackFrameEvaluator {
         evaluateTopFrame();
     }
 
+    public void applyMessageSetUserInput() {
+
+        assert state.getShouldRun() == false;
+        assert peekStack() instanceof UserInputStackFrame;
+
+        logger.debug("popping and discarding UserInputStackFrame");
+        popStack(); // discard the UserInputStackFrame
+        logger.debug("after discarding UserInputStackFrame, " + getStackReport());
+
+        // store the Results (user's answers) in the list to be reported up to the api at the end
+        // MessageSets currently don't have any "results", or actions, we just proceed
+        //state.addResults(results);
+
+        StackFrame currentFrame = peekStack();
+
+        assert currentFrame != null;
+        assert currentFrame != EMPTY_STACK_FRAME;
+        assert currentFrame instanceof MessageSetStackFrame;
+
+        currentFrame.markCurrentActionCompleted();
+
+        // restart evaluation
+        state.setShouldRun(true); // allow the engine to continue
+
+        // we directly modified a frame on the stack
+        // instead of going through wrapper methods,
+        // so we need to save the new state
+        persistState();
+
+        evaluateTopFrame();
+    }
 
     @Override
     public StackFrame evaluate(FormStackFrame frame) {
@@ -159,8 +196,24 @@ public class EvaluationEngine implements StackFrameEvaluator {
         return resultStackFrame;
     }
 
+    @Override
+    public StackFrame evaluate(QuestionSetStackFrame frame) {
+
+        StackFrame resultStackFrame = EMPTY_STACK_FRAME;
+
+        Action currentAction = frame.getFirstUncompletedAction();
+        if(currentAction != null) {
+            logger.debug("evaluate - action is: " + currentAction);
+            resultStackFrame = performAction(currentAction);
+        }
+
+        logger.debug("evaluate - result of action: " + currentAction + " is: " + resultStackFrame);
+
+        return resultStackFrame;
+    }
+
     // todo - if nothing different, combine the multiple evaluate(...Frame) methods
-    public StackFrame evaluate(MessageStackFrame frame) {
+    public StackFrame evaluate(MessageSetStackFrame frame) {
         StackFrame resultStackFrame = EMPTY_STACK_FRAME;
 
         Action currentAction = frame.getFirstUncompletedAction();
@@ -184,7 +237,8 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
         Action currentAction = frame.getFirstUncompletedAction();
         if(currentAction != null) {
-            logger.debug("evaluate - action is: " + currentAction);
+            logger.debug("evaluate rule - action is: " + currentAction);
+            markCurrentActionCompleted(); // mark the rule evaluation action complete
             resultStackFrame = performAction(currentAction);
         }
 
@@ -230,6 +284,9 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
         JSONObject activity = getActivity(activityId);
         JSONObject step = getStep(activity, stepId);
+
+        // the step has a formId
+        // the form has actions
 
         Object formIdObj = step.get("formId");
         if(formIdObj != null) {
@@ -294,8 +351,17 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
         // if we get here, we've stopped without completing a flow (the stack is not empty),
         // typically because we need user input
-        if(peekStack() instanceof UserInputStackFrame) {
-            UserInputStackFrame userInputStackFrame = (UserInputStackFrame) peekStack();
+
+
+        if(peekStack() instanceof QuestionSetUserInputStackFrame) {
+            QuestionSetUserInputStackFrame userInputStackFrame = (QuestionSetUserInputStackFrame) peekStack();
+            if(!userInputStackFrame.isInputRequested()) {
+                requestUserInput(userInputStackFrame);
+            }
+        }
+
+        if(peekStack() instanceof MessageSetUserInputStackFrame) {
+            MessageSetUserInputStackFrame userInputStackFrame = (MessageSetUserInputStackFrame) peekStack();
             if(!userInputStackFrame.isInputRequested()) {
                 requestUserInput(userInputStackFrame);
             }
@@ -319,6 +385,7 @@ public class EvaluationEngine implements StackFrameEvaluator {
             case DISPLAY_MESSAGE_SET:
                 resultStackFrame = displayMessageSet(action.getMessageSetId());
                 // this type of action is completed when the answers are applied
+                // todo - remove this when actually implemented:
                 break;
 
             case EVALUATE_RULE_SET:
@@ -350,9 +417,12 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
         // populate the current stack frame with questionSet actions, if any
         StackFrame currentFrame = peekStack();
-        assert currentFrame instanceof FormStackFrame;
-
-        ((FormStackFrame) currentFrame).setQuestionSetId(questionSetId);
+        if(currentFrame instanceof FormStackFrame) {
+            ((FormStackFrame) currentFrame).setQuestionSetId(questionSetId);
+        } else {
+            StackFrame questionSetStackFrame = buildStackFrameForQuestionSet(questionSetId);
+            pushStack(questionSetStackFrame);
+        }
 
         state.setShouldRun(false);
 
@@ -367,14 +437,14 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
 
     private StackFrame displayMessageSet(int messageSetId) {
+
         logger.debug("displaying messageSet: " + messageSetId);
 
 
-        // populate the current stack frame with messageSet actions, if any
-        StackFrame currentFrame = peekStack();
-        assert currentFrame instanceof FormStackFrame;
+        // create a stack frame for displaying the message set, and push it on the stack
+        StackFrame messageSetStackFrame = buildStackFrameForMessageSet(messageSetId);
 
-        ((FormStackFrame) currentFrame).setQuestionSetId(questionSetId);
+        pushStack(messageSetStackFrame);
 
         state.setShouldRun(false);
 
@@ -384,7 +454,7 @@ public class EvaluationEngine implements StackFrameEvaluator {
         persistState();
 
 
-        return new QuestionSetUserInputStackFrame(questionSetId);
+        return new MessageSetUserInputStackFrame(messageSetId);
     }
 
     private Map<Integer, ResultSet> getPreviousAnswers() {
@@ -431,10 +501,8 @@ public class EvaluationEngine implements StackFrameEvaluator {
 
         logger.debug("result of evaluating ruleSet " + ruleSetId + ": " + evaluationResult);
 
-        // an evaluation result is now a list of actions
+        // an evaluation result is a list of actions
         if(evaluationResult != EvaluationResult.EMPTY) {
-            //logger.debug("(NOT YET) creating  rule evaluation results / actions stack frame for rule evaluation result: " + evaluationResult);
-
             RuleActionsStackFrame stackFrame = new RuleActionsStackFrame();
             Action[] actions = new Action[evaluationResult.actions.size()];
             actions = evaluationResult.actions.toArray(actions);
@@ -472,25 +540,17 @@ public class EvaluationEngine implements StackFrameEvaluator {
     }
 
     // todo - implementation
-    private StackFrame buildStackFrameForQuestionSet(final JSONObject questionSet) {
-        return null;
+    private StackFrame buildStackFrameForQuestionSet(final int questionSetId) {
+        JSONObject questionSet = getQuestionSet(questionSetId);
+        return new QuestionSetStackFrame(questionSet);
     }
 
-    // todo - implementation
-    private StackFrame buildStackFrameForMessageSet(final JSONObject messageSet) {
-        return null;
+    private StackFrame buildStackFrameForMessageSet(int messageSetId) {
+        MessageSetStackFrame messageSetStackFrame =  new MessageSetStackFrame();
+        messageSetStackFrame.setMessageSetId(messageSetId);
+        return messageSetStackFrame;
     }
 
-    // todo - implementation
-    private StackFrame buildStackFrameForRuleSet(final JSONObject ruleSet) {
-        return null;
-    }
-
-    private StackFrame buildStackFrameForActions(final JSONArray actions) {
-        String name = "Frame " + Integer.toString(state.incrementFrameCounter());
-
-        return null; //new StackFrame(name, actions);
-    }
 
     private void populateStackFrameQuestionSetActions(final FormStackFrame frame) {
         int questionSetId = frame.getQuestionSetId();
@@ -499,6 +559,17 @@ public class EvaluationEngine implements StackFrameEvaluator {
     }
 
     private void populateStackFrameAnswerActions(final FormStackFrame frame) {
+        // todo - populate the currentFrame with answer actions - these need to be matched up with the answers,
+        // so maybe we bundle question, answer, and actions together?
+    }
+
+    private void populateStackFrameQuestionSetActions(final QuestionSetStackFrame frame) {
+        int questionSetId = frame.getQuestionSetId();
+        JSONObject questionSet = getQuestionSet(questionSetId);
+        frame.setQuestionSetActions((JSONArray) questionSet.get("actions"));
+    }
+
+    private void populateStackFrameAnswerActions(final QuestionSetStackFrame frame) {
         // todo - populate the currentFrame with answer actions - these need to be matched up with the answers,
         // so maybe we bundle question, answer, and actions together?
     }
@@ -543,12 +614,21 @@ public class EvaluationEngine implements StackFrameEvaluator {
         stateRepository.saveState(state);
     }
 
-    private void requestUserInput(final UserInputStackFrame frame) {
+    private void requestUserInput(final QuestionSetUserInputStackFrame frame) {
         if(!frame.isInputRequested()) {
             frame.setInputRequested(true);
             persistState();
             // TODO - request user input, probably via message bus
-            logger.debug("Request for user input: " + frame + ": NOT IMPLEMENTED YET");
+            logger.debug("Request for question set user input for questionSetId: " + frame.getQuestionSetId() + ": NOT IMPLEMENTED YET");
+        }
+    }
+
+    private void requestUserInput(final MessageSetUserInputStackFrame frame) {
+        if(!frame.isInputRequested()) {
+            frame.setInputRequested(true);
+            persistState();
+            // TODO - request user input, probably via message bus
+            logger.debug("Request for message set user input for messageSetId: " + frame.getMessageSetId() + ": NOT IMPLEMENTED YET");
         }
     }
 

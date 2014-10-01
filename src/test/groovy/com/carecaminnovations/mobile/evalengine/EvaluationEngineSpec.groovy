@@ -36,7 +36,7 @@ class EvaluationEngineSpec extends Specification {
         given:
         int activityId = 410
         int stepId = 492
-        evaluationEngine.evaluateForm(activityId, stepId)
+        evaluationEngine.evaluateActivityStep(activityId, stepId)
 
         // simulate wait for user input
         for(int i = 0; i < 5; i++) {
@@ -44,9 +44,8 @@ class EvaluationEngineSpec extends Specification {
             sleep(1000);
         }
 
-
         setup() // again
-        evaluationEngine.evaluateForm(activityId, stepId)
+        evaluationEngine.evaluateActivityStep(activityId, stepId)
 
         List<ResultSet> resultSets = new ArrayList<ResultSet>();
 
@@ -60,7 +59,23 @@ class EvaluationEngineSpec extends Specification {
         Results results = new Results();
         results.setResults(resultSets);
 
-        evaluationEngine.applyUserInput(results);
+        evaluationEngine.applyQuestionSetUserInput(results);
+
+
+
+
+        // simulate wait for user input for message set
+        for(int i = 0; i < 5; i++) {
+            println(i)
+            sleep(1000);
+        }
+
+        // resume
+        setup()
+        evaluationEngine.evaluateActivityStep(activityId, stepId);
+        evaluationEngine.applyMessageSetUserInput();
+
+
 
         expect:
         evaluationEngine.stateRepository != null
