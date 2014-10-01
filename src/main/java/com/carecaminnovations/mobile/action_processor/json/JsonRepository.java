@@ -1,11 +1,10 @@
-package com.carecaminnovations.mobile.json;
+package com.carecaminnovations.mobile.action_processor.json;
 
-import com.carecaminnovations.mobile.rules.EvaluationResult;
+import com.carecaminnovations.mobile.action_processor.rules.EvaluationResult;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public interface JsonRepository {
 

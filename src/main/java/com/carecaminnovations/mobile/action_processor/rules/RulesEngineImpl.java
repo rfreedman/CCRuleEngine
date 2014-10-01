@@ -1,6 +1,6 @@
-package com.carecaminnovations.mobile.rules;
+package com.carecaminnovations.mobile.action_processor.rules;
 
-import com.carecaminnovations.mobile.json.JsonRepository;
+import com.carecaminnovations.mobile.action_processor.json.JsonRepository;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.slf4j.Logger;

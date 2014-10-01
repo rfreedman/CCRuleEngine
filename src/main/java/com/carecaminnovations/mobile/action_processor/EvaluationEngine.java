@@ -1,4 +1,4 @@
-package com.carecaminnovations.mobile.evalengine;
+package com.carecaminnovations.mobile.action_processor;
 
 
 
@@ -43,12 +43,12 @@ Form -> array of actions to be processed sequentially (go all the way down the t
  *
  */
 
-import com.carecaminnovations.mobile.json.JsonRepository;
+import com.carecaminnovations.mobile.action_processor.json.JsonRepository;
 import com.carecaminnovations.mobile.model.Action;
 import com.carecaminnovations.mobile.model.ResultSet;
 import com.carecaminnovations.mobile.model.Results;
-import com.carecaminnovations.mobile.rules.EvaluationResult;
-import com.carecaminnovations.mobile.rules.RulesEngine;
+import com.carecaminnovations.mobile.action_processor.rules.EvaluationResult;
+import com.carecaminnovations.mobile.action_processor.rules.RulesEngine;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
@@ -57,7 +57,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.carecaminnovations.mobile.evalengine.EvalStack.EMPTY_STACK_FRAME;
+import static com.carecaminnovations.mobile.action_processor.EvalStack.EMPTY_STACK_FRAME;
 import static com.carecaminnovations.mobile.model.Action.ActionType;
 
 public class EvaluationEngine implements StackFrameEvaluator {

@@ -1,16 +1,14 @@
-package com.carecaminnovations.mobile.evalengine;
+package com.carecaminnovations.mobile.action_processor;
+
 
 import com.carecaminnovations.mobile.model.Action;
 import com.google.gson.GsonBuilder;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
-/**
- * StackFrame for evaluation of a Form.
- * Because evaluation always begins with a Form, a FormStackFrame is always the bottom-most frame on the stack
- */
-public class FormStackFrame extends StackFrame {
-    private JSONObject form = null;
+import java.util.Arrays;
+
+public class QuestionSetStackFrame extends StackFrame {
 
     private Action[] answerActions;
     private Integer lastCompletedAnswerActionIndex;
@@ -31,13 +29,11 @@ public class FormStackFrame extends StackFrame {
         return result;
     }
 
-    /** for GSon only */
-    public FormStackFrame() {
+    public QuestionSetStackFrame() {
     }
 
-    public FormStackFrame(final JSONObject form) {
-        super(actionsFromJSON((JSONArray)form.get("actions")));
-        this.form = form;
+    public QuestionSetStackFrame(final JSONObject questionSet) {
+        super(actionsFromJSON((JSONArray) questionSet.get("actions")));
     }
 
     public void setAnswerActions(final JSONArray answerActions) {
@@ -274,20 +270,14 @@ public class FormStackFrame extends StackFrame {
         return evaluator.evaluate(this);
     }
 
-    public JSONObject getForm() {
-        return form;
-    }
-
-
     @Override
     public String toString() {
-        return "FormStackFrame{" +
-            "form=" + form +
-            ", answerActions=" + answerActions +
+        return "QuestionSetStackFrame{" +
+            "answerActions=" + Arrays.toString(answerActions) +
             ", lastCompletedAnswerActionIndex=" + lastCompletedAnswerActionIndex +
-            ", questionSetActions=" + questionSetActions +
+            ", questionSetActions=" + Arrays.toString(questionSetActions) +
             ", lastCompletedQuestionSetActionIndex=" + lastCompletedQuestionSetActionIndex +
             ", questionSetId=" + questionSetId +
-            "} ";
+            "} " + super.toString();
     }
 }

@@ -1,8 +1,7 @@
-package com.carecaminnovations.mobile.rules
+package com.carecaminnovations.mobile.action_processor.rules
 
-import com.carecaminnovations.mobile.json.JsonRepository
-import com.carecaminnovations.mobile.json.JsonRepositoryImpl
-import com.carecaminnovations.mobile.model.Button
+import com.carecaminnovations.mobile.action_processor.json.JsonRepository
+import com.carecaminnovations.mobile.action_processor.json.JsonRepositoryImpl
 import org.apache.commons.io.IOUtils
 import spock.lang.Specification
 import spock.lang.Unroll

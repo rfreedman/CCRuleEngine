@@ -1,4 +1,4 @@
-package com.carecaminnovations.mobile.rules;
+package com.carecaminnovations.mobile.action_processor.rules;
 
 import java.io.IOException;
 import java.util.Map;

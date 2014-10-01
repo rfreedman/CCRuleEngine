@@ -1,14 +1,16 @@
-package com.carecaminnovations.mobile.evalengine;
-
+package com.carecaminnovations.mobile.action_processor;
 
 import com.carecaminnovations.mobile.model.Action;
 import com.google.gson.GsonBuilder;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
-import java.util.Arrays;
-
-public class QuestionSetStackFrame extends StackFrame {
+/**
+ * StackFrame for evaluation of a Form.
+ * Because evaluation always begins with a Form, a FormStackFrame is always the bottom-most frame on the stack
+ */
+public class FormStackFrame extends StackFrame {
+    private JSONObject form = null;
 
     private Action[] answerActions;
     private Integer lastCompletedAnswerActionIndex;
@@ -29,11 +31,13 @@ public class QuestionSetStackFrame extends StackFrame {
         return result;
     }
 
-    public QuestionSetStackFrame() {
+    /** for GSon only */
+    public FormStackFrame() {
     }
 
-    public QuestionSetStackFrame(final JSONObject questionSet) {
-        super(actionsFromJSON((JSONArray) questionSet.get("actions")));
+    public FormStackFrame(final JSONObject form) {
+        super(actionsFromJSON((JSONArray)form.get("actions")));
+        this.form = form;
     }
 
     public void setAnswerActions(final JSONArray answerActions) {
@@ -270,14 +274,20 @@ public class QuestionSetStackFrame extends StackFrame {
         return evaluator.evaluate(this);
     }
 
+    public JSONObject getForm() {
+        return form;
+    }
+
+
     @Override
     public String toString() {
-        return "QuestionSetStackFrame{" +
-            "answerActions=" + Arrays.toString(answerActions) +
+        return "FormStackFrame{" +
+            "form=" + form +
+            ", answerActions=" + answerActions +
             ", lastCompletedAnswerActionIndex=" + lastCompletedAnswerActionIndex +
-            ", questionSetActions=" + Arrays.toString(questionSetActions) +
+            ", questionSetActions=" + questionSetActions +
             ", lastCompletedQuestionSetActionIndex=" + lastCompletedQuestionSetActionIndex +
             ", questionSetId=" + questionSetId +
-            "} " + super.toString();
+            "} ";
     }
 }

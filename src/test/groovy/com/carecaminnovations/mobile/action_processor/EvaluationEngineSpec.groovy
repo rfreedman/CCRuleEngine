@@ -1,10 +1,10 @@
-package com.carecaminnovations.mobile.evalengine
+package com.carecaminnovations.mobile.action_processor
 
-import com.carecaminnovations.mobile.json.JsonRepository
-import com.carecaminnovations.mobile.json.JsonRepositoryImpl
+import com.carecaminnovations.mobile.action_processor.json.JsonRepository
+import com.carecaminnovations.mobile.action_processor.json.JsonRepositoryImpl
 import com.carecaminnovations.mobile.model.ResultSet
 import com.carecaminnovations.mobile.model.Results
-import com.carecaminnovations.mobile.rules.RulesEngineImpl
+import com.carecaminnovations.mobile.action_processor.rules.RulesEngineImpl
 import org.apache.commons.io.IOUtils
 import spock.lang.Specification
 
